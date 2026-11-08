@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="init" access="private" >
+    <Code><![CDATA[begin
+  //应用初始化：可重复调用（幂等）
+  nState=0
+  nAlarm=0
+  sAlarmMsg=""
+  bStartCmd=false
+  bStopCmd=false
+  bPauseCmd=false
+  bResetCmd=false
+  bRunning=false
+  nCycleCount=0
+  nProdCount=0
+end]]></Code>
+  </Program>
+</Programs>

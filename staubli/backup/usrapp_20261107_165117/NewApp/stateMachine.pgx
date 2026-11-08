@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="stateMachine" access="private" >
+    <Code><![CDATA[begin
+  //运行状态机
+  //  0  初始化
+  //  10 空闲（等待启动）
+  //  20 运行（执行工艺）
+  //  30 暂停
+  //  90 故障（报警，等待复位）
+  do
+    switch nState
+      case 0
+        //上电/复位后的初始化
+        call init()
+        nState=10
+      break
+
+      case 10
+        //空闲：等待启动指令
+        bRunning=false
+        if bStartCmd
+          bStartCmd=false
+          nState=20
+        endIf
+      break
+
+      case 20
+        //运行：在这里调用工艺程序
+        //  call cycle()
+        //  说明：cycle() 是待实现的工艺程序，放在独立的 .pjx 模块里，
+        //        通过 Libraries 引用后写作 call <alias>:cycle()
+        bRunning=true
+        nCycleCount=nCycleCount+1
+        //占位：真正的工艺调用接好后删掉这一行
+        delay(0.01)
+        if bPauseCmd
+          bPauseCmd=false
+          nState=30
+        endIf
+        if bStopCmd
+          bStopCmd=false
+          nState=10
+        endIf
+      break
+
+      case 30
+        //暂停：保持当前位置，等待继续或停止
+        bRunning=false
+        if bStartCmd
+          bStartCmd=false
+          nState=20
+        endIf
+        if bStopCmd
+          bStopCmd=false
+          nState=10
+        endIf
+      break
+
+      case 90
+        //故障：等待复位
+        bRunning=false
+        if bResetCmd
+          bResetCmd=false
+          nAlarm=0
+          sAlarmMsg=""
+          nState=10
+        endIf
+      break
+    endSwitch
+    delay(0)
+  until false
+end]]></Code>
+  </Program>
+</Programs>

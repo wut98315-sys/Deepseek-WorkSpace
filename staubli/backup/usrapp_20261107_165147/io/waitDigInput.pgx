@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="waitDigInput" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_nIndex" type="num" xsi:type="element" use="value" />
+      <Parameter name="x_bLevel" type="bool" xsi:type="element" use="value" />
+      <Parameter name="x_nTimeout" type="num" xsi:type="element" use="value" />
+      <Parameter name="x_bDone" type="bool" xsi:type="element" use="reference" />
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_sDesc" type="string" xsi:type="array" size="1" />
+      <Local name="l_sPath" type="string" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//等待数字输入 dInput[x_nIndex] 到达 x_bLevel 电平，带超时
+//返回码 x_nResult: 0=已到达  -1=索引越界  -2=该位未绑定物理通道  -3=超时  -4=超时参数非法
+//x_bDone=false 表示超时/未到达（唯一表示"等待失败"的语义位）
+//注意：dInput 还没有 link（未做物理 IO 导入），此时读到的是恒 0，
+//      等 true 一定等不到、只能超时；必须先在 SRS 里完成物理 IO 导入，见 docs/05-IO绑定方法.md
+begin
+  x_bDone=false
+  x_nResult=0
+
+  //越界检查：合法下标 0..size(dInput)-1（手册 2.5.4，第31页 num size(*)）
+  if (x_nIndex<0) or (x_nIndex>=size(dInput))
+    x_nResult=-1
+    return
+  endIf
+
+  //未绑定物理通道时先拦截：手册 3.5.1（第59页）——未 link 的 dio 参与比较会触发 runtime error
+  if ioStatus(dInput[x_nIndex],l_sDesc,l_sPath)<0
+    x_nResult=-2
+    return
+  endIf
+
+  //超时参数必须为正数，否则 watch() 会立刻返回 false，变成"假超时"
+  if x_nTimeout<=0
+    x_nResult=-4
+    return
+  endIf
+
+  //watch() 手册 5 章（第103页）：条件在 nSeconds 内成立返回 true，超时返回 false。
+  //相比 wait() 的好处是有超时，不会把任务永远挂住
+  x_bDone=watch(dInput[x_nIndex]==x_bLevel,x_nTimeout)
+  if x_bDone==false
+    x_nResult=-3
+  endIf
+end]]></Code>
+  </Program>
+</Programs>

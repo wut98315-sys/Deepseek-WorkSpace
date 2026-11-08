@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Data/2">
+  <Datas>
+    <!-- 应用名（主界面标题栏显示） -->
+    <Data name="sAppName" access="public" xsi:type="array" type="string" size="1">
+      <Value key="0" value="MainApp" />
+    </Data>
+    <!-- 数据库ID：待定，用户暂不填（初值空串，页面这一行保留但显示为空） -->
+    <Data name="sDbId" access="public" xsi:type="array" type="string" size="1">
+      <Value key="0" value="" />
+    </Data>
+    <!-- 设备信息：运行时由 getVersion()/getProfile() 填充，HMI 只读 -->
+    <Data name="sRobotModel" access="public" xsi:type="array" type="string" size="1" />
+    <Data name="sRobotSN" access="public" xsi:type="array" type="string" size="1" />
+    <Data name="sCtrlSN" access="public" xsi:type="array" type="string" size="1" />
+    <!-- 角色显示名：生产员 / 工程师（由 sProfileRaw 映射而来，HMI 显示这个） -->
+    <Data name="sProfile" access="public" xsi:type="array" type="string" size="1" />
+    <!-- getProfile() 原始返回值：operator / programmer / staubli ... -->
+    <Data name="sProfileRaw" access="public" xsi:type="array" type="string" size="1" />
+    <!-- 两级角色的登录名。必须与控制器“用户管理”里实际定义的 profile 名一致，
+         否则 setProfile 返回 -1；现场登录名不同就改这里（顺序与 sRoleName 一一对应） -->
+    <Data name="sLogin" access="public" xsi:type="array" type="string" size="2">
+      <Value key="0" value="operator" />
+      <Value key="1" value="programmer" />
+    </Data>
+    <!-- 角色显示名，与 sLogin 同下标：0=生产员 1=工程师 -->
+    <Data name="sRoleName" access="public" xsi:type="array" type="string" size="2">
+      <Value key="0" value="生产员" />
+      <Value key="1" value="工程师" />
+    </Data>
+    <!-- 9 个功能按钮的选中态（点击置 true，由 _clickFuncReset 或 stop 复位）
+         下标含义：0=I/O  1=轨迹  2=备用1  3=备用2  4=备用3
+                   5=备用4  6=备用5  7=备用6  8=备用7
+         注：具体业务动作待用户确定，目前只记录选中态，不触发工艺程序 -->
+    <Data name="bFunc" access="public" xsi:type="array" type="bool" size="9" />
+    <!-- 按钮背景色：默认灰 #DCDCDC，选中绿 #4CAF50（HMI 绑定 style.backgroundColor） -->
+    <Data name="sFuncBg" access="public" xsi:type="array" type="string" size="9">
+      <Value key="0" value="#DCDCDC" />
+      <Value key="1" value="#DCDCDC" />
+      <Value key="2" value="#DCDCDC" />
+      <Value key="3" value="#DCDCDC" />
+      <Value key="4" value="#DCDCDC" />
+      <Value key="5" value="#DCDCDC" />
+      <Value key="6" value="#DCDCDC" />
+      <Value key="7" value="#DCDCDC" />
+      <Value key="8" value="#DCDCDC" />
+    </Data>
+    <!-- 按下态记录（可选，当前页面未用，留给后续做"按住/闪烁"效果） -->
+    <Data name="bBtnPressed" access="public" xsi:type="array" type="bool" size="9" />
+  </Datas>
+</Database>

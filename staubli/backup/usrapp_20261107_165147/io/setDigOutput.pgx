@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="setDigOutput" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_nIndex" type="num" xsi:type="element" use="value" />
+      <Parameter name="x_bValue" type="bool" xsi:type="element" use="value" />
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_sDesc" type="string" xsi:type="array" size="1" />
+      <Local name="l_sPath" type="string" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//写数字输出 dOutput[x_nIndex]
+//返回码 x_nResult: 0=正常  -1=索引越界  -2=该位未绑定物理通道(ioStatus<0，写入无效)
+//注意：dOutput 还没有 link（未做物理 IO 导入），此时写入不会作用到任何物理点，
+//      必须先在 SRS 里完成物理 IO 导入，见 docs/05-IO绑定方法.md
+begin
+  x_nResult=0
+
+  //越界检查：合法下标 0..size(dOutput)-1（手册 2.5.4，第31页 num size(*)）
+  if (x_nIndex<0) or (x_nIndex>=size(dOutput))
+    x_nResult=-1
+    return
+  endIf
+
+  //未绑定物理通道时先拦截：手册 3.5.2（第59页）——给未 link 的 dio 赋值会触发 runtime error
+  if ioStatus(dOutput[x_nIndex],l_sDesc,l_sPath)<0
+    x_nResult=-2
+    return
+  endIf
+
+  dOutput[x_nIndex]=x_bValue
+end]]></Code>
+  </Program>
+</Programs>

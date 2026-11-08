@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="home" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_nMoveId" type="num" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//关节运动(movej)回 Home 位 jHome，并等待到位/停稳
+//返回码 x_nResult：0=已到 Home 并停稳  1=到点但仍有残余抖动  -2=jHome 超出软件限位
+//依赖：Motion.dtx 的 jHome（当前是全 0 占位，示教后才是真实 Home）
+begin
+  x_nResult=0
+
+  waitEndMove()
+
+  //jHome 现在是全 0 占位，先判软件限位（bool isInRange(joint)，手册 9.2，第133页）；
+  //不在限位内就直接返回错误，不要让控制器抛 runtime error
+  if isInRange(jHome)==false
+    x_nResult=-2
+    return
+  endIf
+
+  //movej 的第一个参数必须用 joint 变量传入；写成 {0,0,0,0,0,0} 会被判为歧义表达式
+  //（手册 10.6，第173页 movej 的 Example 有说明）
+  l_nMoveId=movej(jHome,tTool,mFine)
+
+  //move id 只能用 >= 判断，且完成判据是 +1（手册 10.4，第180页）
+  wait(getMoveId()>=l_nMoveId+1)
+
+  call getMoveDone(x_nResult)
+end]]></Code>
+  </Program>
+</Programs>

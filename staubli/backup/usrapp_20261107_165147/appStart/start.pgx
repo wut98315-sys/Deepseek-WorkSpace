@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="start" access="private" >
+    <Code><![CDATA[begin
+  //应用入口。SRS 下载后在“应用管理”里设为启动应用即可自动执行。
+  //1) 初始化主界面：取设备信息 + 打开页面 + 绑定 9 个功能按钮
+  call Page_AppStart()
+
+  //2) 常驻 HMI 任务：刷新角色、同步按钮背景色（优先级低于工艺任务）
+  taskCreate "taskHmi",50,taskHmi()
+
+  //3) 主程序作为心跳，不退出
+  do
+    delay(1)
+  until false
+end]]></Code>
+  </Program>
+</Programs>

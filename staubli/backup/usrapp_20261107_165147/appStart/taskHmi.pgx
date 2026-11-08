@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="taskHmi" access="public" >
+    <Locals>
+      <Local name="l_nI" type="num" xsi:type="array" size="1" />
+      <Local name="l_bPrev" type="bool" xsi:type="array" size="9" />
+    </Locals>
+    <Code><![CDATA[begin
+  //常驻 HMI 任务：1 秒刷新角色，bFunc 变化时同步按钮背景色
+  //注意：循环里必须有 delay()，否则会把控制器 CPU 跑满
+
+  //上电先对齐一次：记录当前选中态并刷新背景色
+  for l_nI=0 to 8
+    l_bPrev[l_nI]=bFunc[l_nI]
+    if bFunc[l_nI]
+      sFuncBg[l_nI]="#4CAF50"
+    else
+      sFuncBg[l_nI]="#DCDCDC"
+    endIf
+  endFor
+
+  do
+    //1) 刷新角色（可能被示教器/MCP 侧改掉），原始值进 sProfileRaw，显示名进 sProfile
+    sProfileRaw=getProfile()
+    sProfile=sProfileRaw
+    if sProfileRaw==sLogin[0]
+      sProfile=sRoleName[0]
+    elseIf sProfileRaw==sLogin[1]
+      sProfile=sRoleName[1]
+    endIf
+
+    //2) bFunc 变化时同步背景色：选中 #4CAF50，复位 #DCDCDC
+    for l_nI=0 to 8
+      if bFunc[l_nI]!=l_bPrev[l_nI]
+        l_bPrev[l_nI]=bFunc[l_nI]
+        if bFunc[l_nI]
+          sFuncBg[l_nI]="#4CAF50"
+        else
+          sFuncBg[l_nI]="#DCDCDC"
+        endIf
+      endIf
+    endFor
+
+    //3) 让出 CPU，周期 1 秒
+    delay(1)
+  until false
+end]]></Code>
+  </Program>
+</Programs>

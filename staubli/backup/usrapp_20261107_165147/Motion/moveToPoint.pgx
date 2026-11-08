@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="moveToPoint" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_pTarget" type="point" xsi:type="element" use="value" />
+      <Parameter name="x_tTool" type="tool" xsi:type="element" use="value" />
+      <Parameter name="x_mDesc" type="mdesc" xsi:type="element" use="value" />
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_nMoveId" type="num" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//直线运动(movel)到点位，并等待到位/停稳
+//用法：call mot:moveToPoint(pPick, mot:tTool, mot:mNomSpeed, nResult)
+//      要精定位时把第 3 个参数换成 mot:mFine
+//返回码 x_nResult：0=已到位并停稳  1=指令执行完但仍有残余抖动（见 getMoveDone）  2=运动被中断
+//点位由调用方传入（本库不放占位点位，见 Motion.dtx 注释）
+begin
+  x_nResult=0
+
+  //0) 先把已下发的运动执行完，避免上一条指令的混接影响本次到位判断
+  waitEndMove()
+
+  //1) 下发直线运动，返回本次 move id（手册 10.6，第174页 num movel(point,tool,mdesc)）
+  l_nMoveId=movel(x_pTarget,x_tTool,x_mDesc)
+
+  //2) 等这条指令走过终点。move id 的整数部分是"正在执行的指令号"，
+  //   指令刚下发时 getMoveId() 已经是 l_nMoveId.x，所以 >=l_nMoveId 会立刻成立；
+  //   正确判据是 >=l_nMoveId+1（手册 10.4 第180页：waitEndMove 后 id = 最后一条 +1）
+  wait(getMoveId()>=l_nMoveId+1)
+
+  //3) 等机械臂真正停稳（waitEndMove 只等到指令执行完，不等稳定）
+  call getMoveDone(x_nResult)
+end]]></Code>
+  </Program>
+</Programs>

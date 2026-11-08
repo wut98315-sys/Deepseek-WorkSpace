@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="setSpeed" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_nPercent" type="num" xsi:type="element" use="value" />
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_mSpeed" type="mdesc" xsi:type="array" size="1" />
+      <Local name="l_nAccel" type="num" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//按百分比改 Motion.dtx 的 mNomSpeed（后续所有用 mNomSpeed 的运动都受影响）
+//用法：call mot:setSpeed(50, nResult)   // 50%
+//返回码 x_nResult：0=正常  -1=百分比越界（合法 1..100）
+//字段含义见手册 10.5（第172页）：vel/accel/decel 均为额定值的百分比
+begin
+  x_nResult=0
+
+  if (x_nPercent<1) or (x_nPercent>100)
+    x_nResult=-1
+    return
+  endIf
+
+  //先拷到局部 mdesc 再改字段，再整体写回（与参考工程 usrapp_dr/Move/setSpeed.pgx 同一写法）
+  l_mSpeed=mNomSpeed
+  l_mSpeed.vel=x_nPercent
+  //加减速按速度平方折算，低速时加减速也小，避免小速度大加速度造成抖动
+  l_nAccel=(x_nPercent*x_nPercent)/100
+  l_mSpeed.accel=l_nAccel
+  l_mSpeed.decel=l_nAccel
+  //不在中间点混接，保证每条运动都精确到位（blend 取值 off/joint/Cartesian）
+  l_mSpeed.blend=off
+  l_mSpeed.leave=0
+  l_mSpeed.reach=0
+
+  mNomSpeed=l_mSpeed
+end]]></Code>
+  </Program>
+</Programs>

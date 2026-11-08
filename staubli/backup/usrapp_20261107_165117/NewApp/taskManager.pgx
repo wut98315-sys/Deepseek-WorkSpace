@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="taskManager" access="private" >
+    <Code><![CDATA[begin
+  //任务守护：某个任务因通信中断/异常退出后，5 秒后自动拉起
+  do
+    if taskStatus("stateMachine")!=1
+      taskResume("stateMachine",1)
+      delay(5)
+    endIf
+    delay(0)
+  until false
+end]]></Code>
+  </Program>
+</Programs>

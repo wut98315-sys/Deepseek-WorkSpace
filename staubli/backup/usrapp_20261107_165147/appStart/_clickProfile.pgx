@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="_clickProfile" access="public" >
+    <Locals>
+      <Local name="l_nCur" type="num" xsi:type="array" size="1" />
+      <Local name="l_nTarget" type="num" xsi:type="array" size="1" />
+      <Local name="l_nRet" type="num" xsi:type="array" size="1" />
+      <Local name="l_sPwd" type="string" xsi:type="array" size="1" />
+      <Local name="l_sMsg" type="string" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[begin
+  //权限图标点击回调（无参数，供 AppStart.bindings.json 的 callbacks 调用）
+  //两级角色：0=生产员(operator) 1=工程师(programmer)
+  //手册依据：userPageConfirm/userPagePrompt 第81-82页、getProfile/setProfile 第83页
+
+  //1) 判断当前角色
+  l_nCur=-1
+  if sProfileRaw==sLogin[0]
+    l_nCur=0
+  elseIf sProfileRaw==sLogin[1]
+    l_nCur=1
+  endIf
+
+  //2) 目标是"另一个角色"（当前是 staubli/未知时默认切到生产员）
+  if l_nCur==0
+    l_nTarget=1
+  else
+    l_nTarget=0
+  endIf
+
+  //3) 确认 + 输密码
+  l_sMsg="当前："+sProfile+"，是否切换到 "+sRoleName[l_nTarget]+"？"
+  if userPageConfirm(l_sMsg)==false
+    return
+  endIf
+
+  l_sPwd=""
+  if userPagePrompt("请输入"+sRoleName[l_nTarget]+"的密码",l_sPwd)==false
+    return
+  endIf
+
+  //4) 切换并刷新显示名
+  l_nRet=setProfile(sLogin[l_nTarget],l_sPwd)
+  if l_nRet==0
+    sProfileRaw=getProfile()
+    sProfile=sProfileRaw
+    if sProfileRaw==sLogin[0]
+      sProfile=sRoleName[0]
+    elseIf sProfileRaw==sLogin[1]
+      sProfile=sRoleName[1]
+    endIf
+  elseIf l_nRet==-1
+    userPageAlert("切换失败(-1)：用户未定义，请核对 appStart.dtx 里 sLogin 的登录名")
+  elseIf l_nRet==-2
+    userPageAlert("切换失败(-2)：密码错误")
+  elseIf l_nRet==-3
+    userPageAlert("切换失败(-3)：不允许使用 staubli 用户")
+  elseIf l_nRet==-4
+    userPageAlert("切换失败(-4)：当前是 staubli 用户，不能切换")
+  else
+    userPageAlert("切换失败，错误码："+toString("",l_nRet))
+  endIf
+end]]></Code>
+  </Program>
+</Programs>

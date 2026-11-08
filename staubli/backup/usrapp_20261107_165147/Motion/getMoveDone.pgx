@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="getMoveDone" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_nT0" type="num" xsi:type="array" size="1" />
+      <Local name="l_nTimeout" type="num" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//等待已下发的运动全部执行完，并等到机械臂停稳
+//返回码 x_nResult：0=已停稳  1=指令执行完但 2s 内仍未停稳（残余抖动/受外力）
+//依据：waitEndMove() 手册 10.6 第177页；isSettled() 手册 10.6 第178页
+begin
+  x_nResult=0
+
+  //1) 取消上一条指令的混接，并等它执行完（手册 10.6，第177页）
+  //   注意：waitEndMove 只等到"位置指令下发到位"，不等机械臂稳定
+  waitEndMove()
+
+  //2) 需要完全停稳时必须再用 isSettled()（手册 10.6，第178页）
+  l_nTimeout=2
+  if isSettled()==false
+    l_nT0=clock()                                  //手册 5 章，第103页
+    do
+      delay(0.01)                                  //循环里必须让出 CPU
+    until (isSettled()==true) or ((clock()-l_nT0)>=l_nTimeout)
+    //超时不抛错：有的工位（打磨/压装）本来就有持续微振，交给调用方判断
+    if isSettled()==false
+      x_nResult=1
+    endIf
+  endIf
+end]]></Code>
+  </Program>
+</Programs>

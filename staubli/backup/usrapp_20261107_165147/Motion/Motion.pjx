@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://www.staubli.com/robotics/VAL3/Project/3">
+  <Parameters version="s8.15.3Cs9_BS3337" stackSize="200000" millimeterUnit="true" />
+  <Programs>
+    <Program file="getMoveDone.pgx" />
+    <Program file="home.pgx" />
+    <Program file="moveToPoint.pgx" />
+    <Program file="setSpeed.pgx" />
+  </Programs>
+  <Database>
+    <Data file="Motion.dtx" />
+  </Database>
+  <Libraries>
+    <Library alias="io" path="Disk://io/io.pjx" autoload="true" password="" />
+  </Libraries>
+</Project>

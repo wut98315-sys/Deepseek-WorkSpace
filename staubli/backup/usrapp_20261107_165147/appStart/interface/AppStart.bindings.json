@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "bindings": [
+    { "id": "lbl_appname", "attribute": "innerHTML", "data": "sAppName[0]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "lbl_model", "attribute": "innerHTML", "data": "sRobotModel[0]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "lbl_sn", "attribute": "innerHTML", "data": "sRobotSN[0]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "lbl_dbid", "attribute": "innerHTML", "data": "sDbId[0]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "lbl_profile", "attribute": "innerHTML", "data": "sProfile[0]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func1", "attribute": "style.backgroundColor", "data": "sFuncBg[0]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func2", "attribute": "style.backgroundColor", "data": "sFuncBg[1]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func3", "attribute": "style.backgroundColor", "data": "sFuncBg[2]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func4", "attribute": "style.backgroundColor", "data": "sFuncBg[3]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func5", "attribute": "style.backgroundColor", "data": "sFuncBg[4]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func6", "attribute": "style.backgroundColor", "data": "sFuncBg[5]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func7", "attribute": "style.backgroundColor", "data": "sFuncBg[6]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func8", "attribute": "style.backgroundColor", "data": "sFuncBg[7]", "size": 1, "direction": "r", "refresh": 1 },
+    { "id": "btn_func9", "attribute": "style.backgroundColor", "data": "sFuncBg[8]", "size": 1, "direction": "r", "refresh": 1 }
+  ],
+  "callbacks": [
+    { "id": "btn_profile", "event": "click", "data": "_clickProfile", "priority": 10 },
+    { "id": "btn_funcReset", "event": "click", "data": "_clickFuncReset", "priority": 10 }
+  ]
+}

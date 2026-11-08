@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="_clickFuncReset" access="public" >
+    <Locals>
+      <Local name="l_nI" type="num" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[begin
+  //“全部复位”按钮回调（无参数，供 AppStart.bindings.json 的 callbacks 调用）
+  //9 个功能按钮选中态清零，背景色回默认灰
+  for l_nI=0 to 8
+    bFunc[l_nI]=false
+    sFuncBg[l_nI]="#DCDCDC"
+  endFor
+end]]></Code>
+  </Program>
+</Programs>

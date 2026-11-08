@@ -1,0 +1,18 @@
+# 仓库内统一用 LF 存储，检出为 LF（更利于跨平台与 diff）
+* text=auto eol=lf
+
+# Windows 批处理必须用 CRLF，否则 cmd.exe 解析 goto/label 会出错
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# 二进制，不做换行转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.7z binary
+*.exe binary
+*.dll binary

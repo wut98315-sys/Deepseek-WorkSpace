@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FTP 远程文件传输</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="app-head">
+  <div class="wrap head-inner">
+    <h1>📤 FTP 远程文件传输</h1>
+    <span id="apiStatus" class="badge badge-unknown">服务未连接</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 1. 服务器连接 -->
+  <section class="card">
+    <h2><span class="step">1</span> 服务器连接</h2>
+    <div class="grid4">
+      <label>主机 IP / 域名<input id="host" placeholder="例如 192.168.1.100" autocomplete="off"></label>
+      <label>端口<input id="port" type="number" value="21" min="1" max="65535"></label>
+      <label>用户名<input id="user" value="anonymous" placeholder="anonymous" autocomplete="off"></label>
+      <label>密码
+        <span class="pw-line"><input id="pass" type="password" autocomplete="off"><button type="button" class="mini" id="togglePw" title="显示/隐藏密码">👁</button></span>
+      </label>
+    </div>
+    <label class="block">远程目标目录<input id="remoteDir" placeholder="/upload" value="/"></label>
+    <div class="opts">
+      <label class="chk"><input type="checkbox" id="createDirs" checked>目标目录不存在时自动创建</label>
+      <label class="chk"><input type="checkbox" id="overwrite" checked>覆盖服务器上同名的文件</label>
+      <label class="chk"><input type="checkbox" id="remember">记住连接设置(仅保存在本机浏览器)</label>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="btnTest">测试连接</button>
+      <span id="connMsg" class="msg"></span>
+    </div>
+  </section>
+
+  <!-- 2. 添加文件 -->
+  <section class="card">
+    <h2><span class="step">2</span> 添加文件 / 文件夹</h2>
+    <div id="dropzone" class="dropzone">
+      <div class="dz-icon">🗂</div>
+      <p class="dz-main">将 <b>文件或整个文件夹</b> 拖拽到此处</p>
+      <p class="dz-sub">支持 Chrome / Edge / Firefox;文件夹会保留内部目录结构</p>
+    </div>
+    <div class="actions">
+      <input type="file" id="fileInput" multiple hidden>
+      <input type="file" id="dirInput" multiple hidden webkitdirectory>
+      <button class="btn" id="btnFiles">📄 选择文件</button>
+      <button class="btn" id="btnDir">📁 选择文件夹</button>
+      <span id="pickMsg" class="hint"></span>
+    </div>
+  </section>
+
+  <!-- 3. 传输队列 -->
+  <section class="card">
+    <h2><span class="step">3</span> 传输队列 <span id="queueSummary" class="sum"></span></h2>
+    <div class="prog-head">
+      <div class="prog"><div id="totalBar" class="bar"></div></div>
+      <span id="totalPct" class="pct">0%</span>
+    </div>
+    <div id="queue" class="queue"></div>
+    <div id="queueEmpty" class="empty">尚未添加任何文件——拖拽或点击上方按钮添加</div>
+    <div class="actions">
+      <button class="btn primary big" id="btnStart" disabled>🚀 开始传输</button>
+      <button class="btn danger big" id="btnCancel" disabled>■ 取消</button>
+      <button class="btn big" id="btnClear" disabled>清空队列</button>
+    </div>
+  </section>
+
+  <!-- 4. 日志 -->
+  <section class="card">
+    <h2><span class="step">4</span> 运行日志 <button type="button" class="linkbtn" id="btnClearLog">清空</button></h2>
+    <div id="log" class="log"></div>
+  </section>
+
+  <footer class="foot">
+    仅支持 FTP(21) / FTPS 明文控制通道;若需 SFTP 请另配工具。<br>
+    提示:先「测试连接」成功,再点「开始传输」。
+  </footer>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

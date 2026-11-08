@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="stop" access="private" >
+    <Locals>
+      <Local name="l_nI" type="num" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[begin
+  //应用停止时调用：清掉 9 个功能按钮的选中态，避免下次启动带着上次的状态
+  for l_nI=0 to 8
+    bFunc[l_nI]=false
+    sFuncBg[l_nI]="#DCDCDC"
+  endFor
+end]]></Code>
+  </Program>
+</Programs>

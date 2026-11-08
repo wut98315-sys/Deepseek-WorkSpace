@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "-//W3C//DTD VALHTML Strict//EN">
+  <html xmlns="http://www.staubli.com/robotics/2016/03/valhtml">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"></meta>
+      <meta http-equiv="Pragma" content="no-cache"></meta>
+      <meta http-equiv="Expires" content="0"></meta>
+      <script type="text/javascript" src="/vendor/libs/stblUserPage.min.js"></script>
+      <link href="/vendor/libs/up.min.css" rel="stylesheet" media="all" type="text/css"></link>
+      <link rel="stylesheet" href="../userPage/CSS/USR.css"></link>
+      <link rel="stylesheet" href="../userPage/font-awesome-4.7.0/css/font-awesome.css"></link>
+    </head>
+    <body style="width: 480px; height: 690px; margin: 0; background-color: #FFFFFF">
+      <label id="lbl_appname" style="position: absolute; left: 0px; top: 0px; width: 480px; height: 40px; line-height: 40px; text-align: center; background-color: #C0C0C0; color: #333333; font-size: 22px; font-weight: bold; overflow: hidden;">MainApp</label>
+
+      <div id="btn_profile" class="USR-btn" style="position: absolute; left: 328px; top: 2px; width: 148px; height: 36px; line-height: 36px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 14px; text-align: center; overflow: hidden;"><span style="font-size: 14px; color: #666666;">用户：</span><label id="lbl_profile" style="font-size: 15px; color: #333333;">生产员</label></div>
+
+      <label style="position: absolute; left: 20px; top: 52px; width: 70px; height: 24px; line-height: 24px; font-size: 15px; color: #666666;">型号：</label>
+      <label id="lbl_model" style="position: absolute; left: 95px; top: 52px; width: 365px; height: 24px; line-height: 24px; font-size: 15px; color: #333333; overflow: hidden;">-</label>
+
+      <label style="position: absolute; left: 20px; top: 80px; width: 70px; height: 24px; line-height: 24px; font-size: 15px; color: #666666;">S/N：</label>
+      <label id="lbl_sn" style="position: absolute; left: 95px; top: 80px; width: 365px; height: 24px; line-height: 24px; font-size: 15px; color: #333333; overflow: hidden;">-</label>
+
+      <label style="position: absolute; left: 20px; top: 108px; width: 95px; height: 24px; line-height: 24px; font-size: 15px; color: #666666;">数据库ID：</label>
+      <label id="lbl_dbid" style="position: absolute; left: 115px; top: 108px; width: 345px; height: 24px; line-height: 24px; font-size: 15px; color: #333333; overflow: hidden;"></label>
+
+      <button id="btn_func1" class="USR-btn" style="position: absolute; left: 20px; top: 200px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">I/O</button>
+      <button id="btn_func2" class="USR-btn" style="position: absolute; left: 170px; top: 200px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">轨迹</button>
+      <button id="btn_func3" class="USR-btn" style="position: absolute; left: 320px; top: 200px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">备用1</button>
+
+      <button id="btn_func4" class="USR-btn" style="position: absolute; left: 20px; top: 320px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">备用2</button>
+      <button id="btn_func5" class="USR-btn" style="position: absolute; left: 170px; top: 320px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">备用3</button>
+      <button id="btn_func6" class="USR-btn" style="position: absolute; left: 320px; top: 320px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">备用4</button>
+
+      <button id="btn_func7" class="USR-btn" style="position: absolute; left: 20px; top: 440px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">备用5</button>
+      <button id="btn_func8" class="USR-btn" style="position: absolute; left: 170px; top: 440px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">备用6</button>
+      <button id="btn_func9" class="USR-btn" style="position: absolute; left: 320px; top: 440px; width: 140px; height: 110px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">备用7</button>
+
+      <button id="btn_funcReset" class="USR-btn" style="position: absolute; left: 140px; top: 572px; width: 200px; height: 50px; border-style: solid; border-color: #808080; border-width: 1px; background-color: #DCDCDC; color: #333333; font-size: 18px; padding: 0px 0px 0px 0px;">全部复位</button>
+    </body>
+  </html>

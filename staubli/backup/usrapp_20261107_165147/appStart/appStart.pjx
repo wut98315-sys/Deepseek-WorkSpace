@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://www.staubli.com/robotics/VAL3/Project/3">
+  <Parameters version="s8.15.3Cs9_BS3337" stackSize="200000" millimeterUnit="true" />
+  <Programs>
+    <Program file="start.pgx" />
+    <Program file="stop.pgx" />
+    <Program file="Page_AppStart.pgx" />
+    <Program file="taskHmi.pgx" />
+    <Program file="_clickProfile.pgx" />
+    <Program file="_clickFuncReset.pgx" />
+  </Programs>
+  <Database>
+    <Data file="appStart.dtx" />
+  </Database>
+  <Libraries />
+</Project>

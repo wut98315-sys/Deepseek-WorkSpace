@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Data/2">
+  <Datas>
+    <!-- 常规运动参数（mdesc，手册 10.5，第172页）：vel=速度百分比、accel/decel=加减速百分比
+         blend=off 表示不混接；leave/reach=0 表示不进混合区。默认 20% 是保守值，现场再调 -->
+    <Data name="mNomSpeed" access="public" xsi:type="array" type="mdesc" size="1">
+      <Value key="0" accel="25" vel="20" decel="25" blend="off" leave="0" reach="0" />
+    </Data>
+    <!-- 精定位运动参数（回零/落点用）：低加减速 + blend=off，到位停稳不混接 -->
+    <Data name="mFine" access="public" xsi:type="array" type="mdesc" size="1">
+      <Value key="0" accel="10" vel="10" decel="10" blend="off" leave="0" reach="0" />
+    </Data>
+    <!-- TODO(teach): 回零关节角，现在是全 0 占位（joint 默认值就是全 0，手册 9.2，第131页）。
+         必须用示教器/Jog 到真实 Home 位后用 MC 或 SRS 数据视图写入 jHome，再改掉这行注释 -->
+    <Data name="jHome" access="public" xsi:type="array" type="joint" size="1" />
+    <!-- TODO(tool): 工具坐标系，暂时引用 flange（无法兰以外的偏置、未做 TCP 标定），
+         真实工具必须用 SRS 的 Tool 校准后在数据里改 fatherId/参数 -->
+    <Data name="tTool" access="public" xsi:type="array" type="tool" size="1">
+      <Value key="0" fatherId="flange[0]" />
+    </Data>
+    <!-- 点位不在这个库里放占位值：
+         point 变量如果参考坐标系没定义，参与运动时会直接抛 runtime error（手册 9.6 / 第146页），
+         而且 fatherId="world[0]" 这种写法没有在本机任何真实工程里出现过，属于未验证。
+         真实点位请用示教器示教后由 SRS 写入（会自动带正确的坐标+坐标系+config），
+         或者放进业务侧的 dtx，由调用方传给 mot:moveToPoint(...)。 -->
+  </Datas>
+</Database>

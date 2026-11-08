@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="start" access="private" >
+    <Code><![CDATA[begin
+  //应用入口。SRS 下载后在“应用管理”里设为启动应用即可自动执行。
+  call init()
+
+  //核心任务：状态机（优先级高于 HMI）
+  taskCreate "stateMachine",50,stateMachine()
+  //任务守护：任务异常退出后自动拉起，保证长期运行
+  taskCreate "taskManager",20,taskManager()
+
+  //主程序作为心跳，不退出
+  do
+    delay(1)
+  until false
+end]]></Code>
+  </Program>
+</Programs>

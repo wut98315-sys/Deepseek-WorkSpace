@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2" >
+  <Program name="Page_AppStart" access="public" >
+    <Locals>
+      <Local name="l_nRet" type="num" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[begin
+  //主界面初始化（只跑一次）：取设备信息 -> 打开页面 -> 绑 9 个功能按钮
+  //手册依据：getVersion 第124页、userPage 第75页、userPageBindClick 第78页
+
+  //1) 设备信息
+  sRobotModel=getVersion("Arm Type")
+  sRobotSN=getVersion("Arm S/N")
+  sCtrlSN=getVersion("Controller S/N")
+
+  //2) 权限转两级角色显示名（生产员 / 工程师），原始值另存 sProfileRaw
+  //注意：sLogin 里的 "operator"/"programmer" 必须与控制器“用户管理”里实际定义的
+  //      profile 名一致，否则 setProfile 返回 -1；现场不同就改 appStart.dtx
+  sProfileRaw=getProfile()
+  sProfile=sProfileRaw
+  if sProfileRaw==sLogin[0]
+    sProfile=sRoleName[0]
+  elseIf sProfileRaw==sLogin[1]
+    sProfile=sRoleName[1]
+  endIf
+
+  //3) 打开页面（页面文件是 interface/AppStart.html，名字不带扩展名）
+  l_nRet=userPage("AppStart")
+  if l_nRet!=0
+    userPageAlert("主界面加载失败，请检查 interface/AppStart.html 是否存在")
+  endIf
+
+  //4) 9 个功能按钮：点击把对应 bFunc 置 true（不是取反），背景色由 sFuncBg 绑定
+  userPageBindClick("AppStart","btn_func1",bFunc[0],true)
+  userPageBindClick("AppStart","btn_func2",bFunc[1],true)
+  userPageBindClick("AppStart","btn_func3",bFunc[2],true)
+  userPageBindClick("AppStart","btn_func4",bFunc[3],true)
+  userPageBindClick("AppStart","btn_func5",bFunc[4],true)
+  userPageBindClick("AppStart","btn_func6",bFunc[5],true)
+  userPageBindClick("AppStart","btn_func7",bFunc[6],true)
+  userPageBindClick("AppStart","btn_func8",bFunc[7],true)
+  userPageBindClick("AppStart","btn_func9",bFunc[8],true)
+
+  //label（lbl_appname / lbl_model / lbl_sn / lbl_dbid / lbl_profile）的绑定在
+  //interface/AppStart.bindings.json 里，这里不要重复绑，否则两处会打架
+end]]></Code>
+  </Program>
+</Programs>

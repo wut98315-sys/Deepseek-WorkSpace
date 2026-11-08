@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="getDigIO" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_nIndex" type="num" xsi:type="element" use="value" />
+      <Parameter name="x_bValue" type="bool" xsi:type="element" use="reference" />
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_sDesc" type="string" xsi:type="array" size="1" />
+      <Local name="l_sPath" type="string" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//读取数字输入 dInput[x_nIndex] 的电平
+//返回码 x_nResult: 0=正常  -1=索引越界  -2=该位未绑定物理通道(ioStatus<0)
+//注意：dInput 还没有 link（未做物理 IO 导入），此时读到的只是恒 0 占位值，
+//      必须先在 SRS 里完成物理 IO 导入，见 docs/05-IO绑定方法.md
+begin
+  //先给默认值，任何提前 return 都不会把上一次的值留在引用参数里
+  x_bValue=false
+  x_nResult=0
+
+  //越界检查：合法下标 0..size(dInput)-1（手册 2.5.4，第31页 num size(*)）
+  if (x_nIndex<0) or (x_nIndex>=size(dInput))
+    x_nResult=-1
+    return
+  endIf
+
+  //未绑定物理通道时先拦截：手册 3.5.1（第59页）——未 link 的 dio 参与运算会触发 runtime error，
+  //所以必须先 ioStatus 再读数；ioStatus 的 -1 含义见手册 3.5.3（第61页）：link 未定义
+  if ioStatus(dInput[x_nIndex],l_sDesc,l_sPath)<0
+    x_nResult=-2
+    return
+  endIf
+
+  x_bValue=(dInput[x_nIndex]==true)
+end]]></Code>
+  </Program>
+</Programs>

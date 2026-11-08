@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Programs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Program/2">
+  <Program name="getAnaIO" access="public">
+    <Parameters xmlns="http://www.staubli.com/robotics/VAL3/Param/1">
+      <Parameter name="x_nIndex" type="num" xsi:type="element" use="value" />
+      <Parameter name="x_nValue" type="num" xsi:type="element" use="reference" />
+      <Parameter name="x_nResult" type="num" xsi:type="element" use="reference" />
+    </Parameters>
+    <Locals>
+      <Local name="l_sDesc" type="string" xsi:type="array" size="1" />
+      <Local name="l_sPath" type="string" xsi:type="array" size="1" />
+    </Locals>
+    <Code><![CDATA[//读取模拟输入 aInput[x_nIndex]
+//返回码 x_nResult: 0=正常  -1=索引越界  -2=该路未绑定物理通道(aioGet 会 runtime error，已提前拦截)
+//注意：aInput 还没有 link（未做物理 IO 导入），此时读到的是恒 0 占位值，
+//      必须先在 SRS 里完成物理 IO 导入，见 docs/05-IO绑定方法.md
+begin
+  x_nValue=0
+  x_nResult=0
+
+  //越界检查：合法下标 0..size(aInput)-1（手册 2.5.4，第31页 num size(*)）
+  if (x_nIndex<0) or (x_nIndex>=size(aInput))
+    x_nResult=-1
+    return
+  endIf
+
+  //手册 3.6.1（第63页）：未 link 的 aio 参与运算会 runtime error，所以必须先 ioStatus
+  //ioStatus(aio) 见手册 3.6.2（第64页），-1 = link 未定义
+  if ioStatus(aInput[x_nIndex],l_sDesc,l_sPath)<0
+    x_nResult=-2
+    return
+  endIf
+
+  x_nValue=aioGet(aInput[x_nIndex])
+end]]></Code>
+  </Program>
+</Programs>

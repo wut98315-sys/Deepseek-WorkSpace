@@ -1,0 +1,27 @@
+# 临时工作目录（从文档提取的中间产物，可随时重新生成）
+staubli/.tmp/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地环境与密钥（切勿提交）
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.staubli.com/robotics/VAL3/Data/2">
+  <Datas>
+    <!-- 运行状态：0=初始化 10=空闲 20=运行 30=暂停 90=故障 -->
+    <Data name="nState" access="public" xsi:type="array" type="num" size="1" />
+    <!-- 报警代码与信息 -->
+    <Data name="nAlarm" access="public" xsi:type="array" type="num" size="1" />
+    <Data name="sAlarmMsg" access="public" xsi:type="array" type="string" size="1" />
+    <!-- 上位机 / HMI 指令（置 true 触发，由状态机消费后复位） -->
+    <Data name="bStartCmd" access="public" xsi:type="array" type="bool" size="1" />
+    <Data name="bStopCmd" access="public" xsi:type="array" type="bool" size="1" />
+    <Data name="bPauseCmd" access="public" xsi:type="array" type="bool" size="1" />
+    <Data name="bResetCmd" access="public" xsi:type="array" type="bool" size="1" />
+    <!-- 状态镜像（供 HMI 显示） -->
+    <Data name="bRunning" access="public" xsi:type="array" type="bool" size="1" />
+    <!-- 计数 -->
+    <Data name="nCycleCount" access="public" xsi:type="array" type="num" size="1" />
+    <Data name="nProdCount" access="public" xsi:type="array" type="num" size="1" />
+  </Datas>
+</Database>

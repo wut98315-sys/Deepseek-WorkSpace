@@ -1,0 +1,2697 @@
+
+
+===== PAGE 1 =====
+STÄUBLI Robotics Suite 2019 (SRS)
+User's manual
+D.280.959.04-B - 19/03/2019
+SRS - Master
+© Stäubli 2019
+
+===== PAGE 2 =====
+A "readme.pdf" document may be delivered on the robot's DVD. It contains the documentation
+addenda and errata.
+Stäubli is a trademark of Stäubli International AG, registered in Switzerland and other countries. We reserve the right to modify product specifications without prior
+notice.
+2/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 3 =====
+TABLE OF CONTENTS
+1- SYSTEM REQUIREMENTS ..................................................................................................7
+1.1- Hardware requirements .................................................................................................................7
+1.2- Software requirements ..................................................................................................................7
+1.3- Firewall configuration .................................................................................................................... 7
+2- STARTING SRS .................................................................................................................... 9
+2.1- Installing SRS ................................................................................................................................ 9
+2.1.1- Installation Details .................................................................................................................9
+2.1.2- Standard setup ..................................................................................................................... 9
+2.1.3- Silent mode ...........................................................................................................................9
+2.1.4- Online installer ...................................................................................................................... 9
+2.2- Lauching the software ...................................................................................................................9
+2.3- FILE menu (Main page) ............................................................................................................... 10
+3- SETTINGS ...........................................................................................................................11
+3.1- Switching from one language to another .................................................................................... 11
+4- TOOL WINDOWS................................................................................................................13
+5- CELL EDITION ....................................................................................................................15
+5.1- Cell creation ................................................................................................................................ 15
+5.2- Add new robot.............................................................................................................................15
+5.3- Add existing local robot (IMPORT CONTROLLER) .....................................................................15
+5.4- Add existing remote robot .......................................................................................................... 15
+5.5- Adding an add-on ....................................................................................................................... 15
+5.5.1- For controllers with SRC version earlier than S6.2 .............................................................16
+5.5.2- For controllers with SRC versions between S6.2 and S6.4 ................................................16
+5.5.3- For controllers with SRC versions S6.4 and later ...............................................................16
+6- LOCAL CONTROLLER EDITION .......................................................................................17
+6.1- Robot type...................................................................................................................................17
+6.2- I/O configuration ......................................................................................................................... 17
+6.3- I/O edition ....................................................................................................................................17
+6.3.1- IO MAP EDITOR ..................................................................................................................17
+6.3.2- Powerlink or Ethercat fieldbus configuration (on CS8) ....................................................... 18
+6.3.3- MODBUS I/O configuration (on CS8) ................................................................................. 18
+6.3.4- FIELDBUS I/O configuration (on CS9) ................................................................................ 18
+6.3.5- TCP/IP and UDP sockets creation (CS9 only) .................................................................... 19
+6.4- Options management ..................................................................................................................19
+6.5- Properties ....................................................................................................................................19
+6.5.1- MISC section ...................................................................................................................... 19
+6.5.2- POSITION SYNCHRONIZER MODE ...................................................................................19
+6.5.3- REMOTE PROPERTIES section..........................................................................................19
+Table of contents
+SRS © Stäubli 2019 – D.280.959.04-B 3/76
+
+===== PAGE 4 =====
+7- WORKING WITH THE 3D ...................................................................................................21
+7.1- 3D objects ................................................................................................................................... 21
+7.1.1- GEOMETRIES ..................................................................................................................... 21
+7.1.2- Devices ............................................................................................................................... 22
+7.1.3- CONSTRUCTION FRAMES ................................................................................................ 25
+7.2- 3D operations ..............................................................................................................................26
+7.2.1- Moving 3D objects ..............................................................................................................26
+7.2.2- Group/ungrouping geometries ........................................................................................... 27
+7.2.3- COPY / CUT / PASTE / UNDO / REDO .............................................................................. 27
+7.2.4- Exporting the scene ............................................................................................................27
+7.2.5- DISPLAY SETTINGS ........................................................................................................... 28
+7.3- 3D tree view ................................................................................................................................ 28
+7.3.1- Tree view nodes content.....................................................................................................28
+7.4- 3D Navigation ..............................................................................................................................29
+7.5- Simulation ................................................................................................................................... 29
+7.5.1- Robot free JOG ...................................................................................................................29
+7.5.2- JOG panel ...........................................................................................................................30
+7.5.3- VAL 3 DATA ........................................................................................................................ 31
+7.5.4- TRACES .............................................................................................................................. 32
+7.5.5- Collision detection .............................................................................................................. 33
+7.5.6- Synchronization .................................................................................................................. 33
+7.5.7- RECORD PLAYER .............................................................................................................. 34
+7.5.8- Parts and tools ....................................................................................................................36
+7.5.9- Checking the payload ......................................................................................................... 38
+7.5.10- Connecting I/Os between controllers ................................................................................. 39
+7.5.11- Recording movies ............................................................................................................... 39
+8- VAL 3 APPLICATION MANAGEMENT .............................................................................. 41
+8.1- Importing applications into a controller ...................................................................................... 41
+8.2- Creating VAL 3 applications ........................................................................................................41
+8.3- Editing data ................................................................................................................................. 41
+8.3.1- Creating a variable ..............................................................................................................41
+8.3.2- Editing values ......................................................................................................................42
+8.4- Editing programs .........................................................................................................................42
+8.4.1- Create a parameter .............................................................................................................43
+8.4.2- Create a local variable ........................................................................................................ 43
+8.4.3- Display CALL TREE ............................................................................................................ 43
+8.5- Editing libraries and user's types ................................................................................................ 44
+8.6- USERPAGE DESIGNER (CS9 only) .............................................................................................44
+8.6.1- Creating a new page ...........................................................................................................44
+8.6.2- Creating widgets .................................................................................................................46
+8.6.3- Binding widget parameters to VAL 3 global variables ........................................................46
+8.6.4- Defining event-based callbacks..........................................................................................47
+8.6.5- Managing the HMI at runtime ............................................................................................. 47
+8.7- Zip libraries and runtime licenses ............................................................................................... 48
+8.8- I/O management in VAL 3 application ........................................................................................ 48
+8.8.1- Importing PHYSICAL IOs ....................................................................................................48
+8.9- Checking syntax ..........................................................................................................................49
+Table of contents
+4/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 5 =====
+8.10- Debugging a VAL 3 application ...................................................................................................49
+8.10.1- Debug on command ........................................................................................................... 49
+8.10.2- RUN AND DEBUG APPLICATION command ..................................................................... 49
+8.10.3- Debugger behaviour ........................................................................................................... 50
+8.11- Application properties ................................................................................................................. 54
+8.12- Printing a VAL 3 application ........................................................................................................54
+8.13- Find and Replace ........................................................................................................................ 55
+9- SAFETY CONFIGURATION (CS9 ONLY) .......................................................................... 57
+9.1- CONFIGURATION WIZARD ........................................................................................................ 57
+9.2- SAFETY RESOURCES ................................................................................................................ 58
+9.3- ERRORS/WARNINGS ................................................................................................................. 59
+9.4- Exporting the configuration .........................................................................................................59
+10- REMOTE CONNECTION AND MAINTENANCE TOOLS ..................................................61
+10.1- CONFIGURATION OF CONNECTION PARAMETERS ................................................................61
+10.2- PROFILE EDITOR ........................................................................................................................61
+10.3- TRANSFER MANAGER ............................................................................................................... 62
+10.3.1- BACKUP ............................................................................................................................. 63
+10.3.2- COMMAND LINE ................................................................................................................ 63
+10.4- REMOTE ACCESS ...................................................................................................................... 65
+10.5- REMOTE OPTIONS .....................................................................................................................66
+10.6- Logger viewer (CS9 only) ............................................................................................................ 66
+10.7- USB DISK TOOLS (CS9 only) ..................................................................................................... 67
+11- SRC EMULATORS ............................................................................................................. 69
+11.1- Installing a new version of SRC  EMULATOR .............................................................................69
+11.2- Uninstalling a version of SRC  EMULATOR ................................................................................ 70
+12- LICENSES AND DONGLE MANAGEMENT ...................................................................... 71
+12.1- Dongles ....................................................................................................................................... 71
+12.2- The LICENSE MANAGER ............................................................................................................71
+12.2.1- Update firmware ................................................................................................................. 72
+12.2.2- Add a license on a dongle .................................................................................................. 72
+12.3- Available licenses ........................................................................................................................72
+12.3.1- DEVELOPMENT STUDIO ....................................................................................................72
+12.3.2- MAINTENANCE STUDIO .................................................................................................... 72
+12.4- Sharing/Disabling a license .........................................................................................................73
+13- QUESTIONS AND ANSWERS ............................................................................................75
+Table of contents
+SRS © Stäubli 2019 – D.280.959.04-B 5/76
+
+===== PAGE 6 =====
+6/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 7 =====
+1 - SYSTEM REQUIREMENTS .
+1.1 - HARDWARE REQUIREMENTS M0003930.1
+The minimum required hardware for SRS is:
+■ 1 Ghz processor or equivalent,
+■ 1 GB ram,
+■ 2 GB virtual memory,
+■ A graphics card with 128 MB of dedicated video ram and support for OpenGL 2.1 or greater.
+The minimum recommended hardware to use 3D VIEW is:
+■ 2 Ghz processor or equivalent,
+■ 4 GB ram,
+■ 6 GB virtual memory,
+■ A graphics card with 256 MB of dedicated video ram and support for OpenGL 2.1 or greater.
+SRS uses a powerful 3D engine. To take full advantage of all the features and specifically
+while using large CAD models, it is highly recommended to use a PC with enhanced graphic
+resources (for example, AMD or NVIDIA professional graphic cards with 256 MB of dedicated
+video ram and supporting OpenGL 2.1 or greater).
+1.2 - SOFTWARE REQUIREMENTS M0003929.1
+SRS operates with:
+■ WINDOWS 7 (32 & 64 bits),
+■ WINDOWS 8 (32 & 64 bits),
+■ WINDOWS 10 (32 & 64 bits).
+SRS does not support:
+■ WINDOWS XP:
+- WINDOWS XP support has ended on April 8, 2014:
+https://support.microsoft.com/en-us/help/14223/windows-xp-end-of-support
+■ WINDOWS VISTA:
+- WINDOWS VISTA support has ended on April 11, 2017:
+https://support.microsoft.com/en-gb/help/22882/windows-vista-end-of-support
+- Virtual machines (VmWare, Virtual box…).
+SRS has been tested with the following versions:
+■ WINDOWS 7 SP1.
+SRS is based on WINDOWS DOT NET FRAMEWORK 4.6.2.
+The correct version of FRAMEWORK is installed with the SRS, if necessary.
+1.3 - FIREWALL CONFIGURATION M0003931.1
+Many tools of STÄUBLI Robotics Suite (SRS) open TCP ports in order to exchange data.
+If you have a FIREWALL installed on your PC, ensure that the following ports are opened.
+1 - SYSTEM REQUIREMENTS
+SRS © Stäubli 2019 – D.280.959.04-B 7/76
+
+===== PAGE 8 =====
+Tool TCP port Remarks
+Transfer manager 21
+5653 (1)
+Used for FTP file transfer
+Used by SRS to read controller version
+Remote maintenance 800 (1)
+850 to 853 (1)
+Socket connection for remote maintenance
+5900 Port used by VNC
+Communication with emu‐
+lators
+5653 (1)
+5660 to 5680 (1)
+Used to exchange data between SRS and emulators
+Online debugger 5653 (1) Used by the PC to connect on the controller
+5656 Used by the controller to connect on the PC
+during a debug session.
+This port must be opened for outgoing and
+incoming connections.
+HASP network dongle 1947
+(TCP + UDP)
+Used to access to a remote license located on a net‐
+work dongle
+(1) Ports numbers can be configured in SRS settings.
+1 - SYSTEM REQUIREMENTS
+8/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 9 =====
+2 - STARTING SRS .
+2.1 - INSTALLING SRS .
+2.1.1 - INSTALLATION DETAILS M0004846.1
+User must have administrator rights in order to install STÄUBLI Robotics Suite (SRS):
+■ If necessary, the Microsoft Windows Dot Net Framework will be updated by
+the STÄUBLI Robotics Suite (SRS) setup. If the update failed, it is possible to find a version on
+the Microsoft website or with the Windows live update.
+■ The driver of the dongle may also be installed during setup: it can take a long time depending on
+your computer. Do not stop the installation.
+2.1.2 - STANDARD SETUP M0004847.1
+Navigate to the installation folder or DVD, and execute the setup.exe program using Windows explor‐
+er.
+Once the setup is running, select the language and follow the installation wizard.
+2.1.3 - SILENT MODE M0004848.1
+Run a command line “as Administrator”:
+■ To install SRS, execute: InstallSRS.exe /S.
+■ To install the emulator, execute: InstallCs8.exe /S.
+■ To install the full robots library, execute: InstallRobots.exe /S.
+Remarks:
+■ /S must be in uppercase.
+■ The setup is executed without any message even if there is an error.
+■ If the setup is copied on a disk, the folder " Tool" must also be copied in the same directory as
+"InstallSRS.exe".
+■ If the " dotnetfx" folder is in the same directory as " InstallSRS.exe",
+the Microsoft Dot Net Framework will be installed if needed (Or exe‐
+cute dotnetfx\NDP452-KB2901907-x86-x64-AllOS-ENU.exe" /q /norestart).
+■ If the " hasp" folder is in the same directory as " InstallSRS.exe", the Aladdin dongle driver will be
+installed if needed.
+2.1.4 - ONLINE INSTALLER M0004849.1
+Retrieve the online installer executable (contact STÄUBLI) and run it.
+Enter the path where you want the software installer to download into.
+Click the DOWNLOAD button to start downloading the software installer. The setup will start automati‐
+cally right after the download completes, select the language and follow the installation wizard.
+2.2 - LAUCHING THE SOFTWARE M0004815.1
+■ SRS is started via the WINDOWS start menu,
+then STÄUBLI\SRS\XX\Stäubli Robotics Suite where XX represents the SRS version. Depending on
+the installation, it is also possible to set up a shortcut to the latest SRS version installed, on the
+desktop and in the quick launch toolbar.
+■ In WINDOWS explorer, SRS can be opened by double-clicking on a ".CELL" file.
+2 - Starting SRS
+SRS © Stäubli 2019 – D.280.959.04-B 9/76
+
+===== PAGE 10 =====
+2.3 - FILE MENU (MAIN PAGE) M0004850.1
+The first column on the left-hand side of the main page contains:
+■ The cell management functions (create a new cell, save, open, close, recent cells).
+■ Link to the HELP features, when selected:
+- The second column contains links to the various help documents, including the YouTube play‐
+list of all the SRS video tutorials (This feature requires an Internet connection):
+https://www.youtube.com/playlist?list=PLUDu1larmk8FL9hGgqnKR-5dypZTzsye3
+- The third column contains information and link to software versions and update, including
+the SRC emulators download/installation center ( SHOW EMULATOR UPDATES), see chap‐
+ter 11  of this manual for more details.
+Note: Make sure that the URL http://srsupdate.staubli.com  is accessible from your computer.
+■ Link to SRS  SETTINGS:
+- Opens up the SETTINGS window, with detailed explanations of each parameter.
+■ Link to exit the software.
+2 - Starting SRS
+10/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 11 =====
+3 - SETTINGS M0004813.1
+To access SRS  SETTINGS, click on the FILE tab, and select SETTINGS.
+3.1 - SWITCHING FROM ONE LANGUAGE TO ANOTHER M0003932.1
+■ Click on the FILE tab.
+■ Select SETTINGS.
+■ Choose the language in the ENVIRONMENT section.
+3 - SETTINGS
+SRS © Stäubli 2019 – D.280.959.04-B 11/76
+
+===== PAGE 12 =====
+12/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 13 =====
+4 - TOOL WINDOWS M0004816.1
+All the SRS tool windows can be used floating or anchored on the edge of the main window.
+Available windows are:
+CELL EXPLORER (Shortcut CTRL + W, C)
+Displays programs, libraries, and user types for each open application.
+DATA (Shortcut CTRL + W, D)
+Display the global data of each application. Data is sorted by type. Double click on a data to edit val‐
+ues.
+GEOMETRY (Shortcut CTRL + W, G)
+Display the points, frames and tools in a geometrical view. The points and frames are located under
+their parent frame and the tools under their parent tool.
+Two specific nodes:
+■ The Orphans Node displays the frames, tools, and points that have no parent frame or an incorrect
+one,
+■ The external fathers node displays the tools, frames and points that have a father that is in a library
+of the VAL 3 application.
+PROPERTIES (F4)
+This window tool displays the properties of the current selected object.
+ERROR LIST (Shortcut CTRL + W, E)
+Display the list of the messages, errors and warnings that occur during load, save, check syntax, etc..
+Double click on an error line to point out the error in the program or DATA TAB.
+It is possible to filter messages by clicking on the category buttons:
+OUTPUT (Shortcut CTRL + W, O)
+It's another view of the error list tab.
+Messages are filtered by category that can be selected using the combo-box.
+FIND RESULT LIST (Shortcut CTRL + W, F)
+Display the result of the FIND ALL or REPLACE ALL  action. Each line corresponds to a found occur‐
+rence. Double click on a line to open the corresponding program or DATA TAB.
+4 - Tool windows
+SRS © Stäubli 2019 – D.280.959.04-B 13/76
+
+===== PAGE 14 =====
+14/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 15 =====
+5 - CELL EDITION M0004817.1
+■ A cell can contain several controllers.
+■ A controller can contain:
+- 1 robot,
+- VAL 3 applications,
+- Records.
+5.1 - CELL CREATION M0003933.1
+To create a new cell, select the NEW command in the FILE tab and follow instructions in the wizard.
+To delete a cell, simply remove it from the disk using WINDOWS explorer.
+Once a cell has been removed it will still appear in the recent cell list on the main page. Right click on
+the entry to remove it from the list.
+5.2 - ADD NEW ROBOT M0003934.1
+In the CELL EXPLORER, right click on the CELL and select ADD\NEW ROBOT.
+This will add a new local controller with a robot. Corresponding files are stored on the hard drive, as in
+this case the controller is emulated.
+5.3 - ADD EXISTING LOCAL ROBOT (IMPORT CONTROLLER) M0003989.1
+In the CELL EXPLORER, right click on the CELL node and select ADD\EXISTING LOCAL ROBOT. This
+feature allows importing an existing controller (for example, an SRS7 cell) and its robot into the cell.
+During the import process, it is possible to convert applications from earlier versions of SRC.
+■ Applications prior to the s4.0 version of VAL 3 are not compatible with SRS.
+They must be converted before they can be imported and benefit from the various SRS features.
+■ Automatic conversion: When an s6.x application is loaded into an emulator or a controller, it is con‐
+verted automatically without user confirmation.
+Only libraries with the AUTO LOAD attribute set to true are converted automatically.
+The others must be converted manually (by opening them in SRS).
+■ Applications prior to the s3.0 version must be converted to s3.0 beforehand using
+the VAL 3UP tool, to enable their use by SRS. This tool is supplied on an  SRS CD  starting
+with 3.0 version (MISC\VAL 3 CONVERTER directory). This tool requires an  I/O VAL 3  library
+(in s3.x format, .DAT extension) containing the cell I/Os used by the program to be converted. This
+library can be created with a 3.x version emulator or by using the example supplied on
+the SRS CD (MISC\VAL 3 CONVERTER directory).
+5.4 - ADD EXISTING REMOTE ROBOT M0003935.1
+In the cell explorer, right click on the CELL node and select ADD\EXISTING REMOTE ROBOT. This
+command opens up a connection window. Click the button 
+  to (create and) select a host (IP ad‐
+dress or hostname, username, password). Specify a name and destination version, and click OK.
+A local robot will then be created based on the one for which the connection parameters were previ‐
+ously specified.
+5.5 - ADDING AN ADD-ON M0003936.1
+The add-on management depends on the VAL 3 version.
+5 - CELL EDITION
+SRS © Stäubli 2019 – D.280.959.04-B 15/76
+
+===== PAGE 16 =====
+5.5.1 - FOR CONTROLLERS WITH SRC VERSION EARLIER THAN S6.2 M0003938.1
+1) Stop the emulator.
+2) Close SRS.
+3) Install the add-on dll in the USR/APP folder of the cell (If this folder doesn't exist, create it).
+4) Restart SRS and the emulator.
+5) Open an application or create a new one.
+6) Go in the command line (menu F2).
+7) Execute the command: export("").
+8) A val3.cfx file is created in the USR/APP folder of the cell.
+9) Overwrite the val3.cfx file that is on the root of cell with this new one.
+10)Now, add-on keywords are recognized in SRS and VAL 3 checker.
+5.5.2 - FOR CONTROLLERS WITH SRC VERSIONS BETWEEN S6.2 AND S6.4 M0003937.1
+1) Stop the emulator.
+2) Close SRS.
+3) Put the add-on files ( DLL and CFX) in the USR/APP folder of the install directory of the VAL 3 ver‐
+sion (usually program files\staubli\cs8\sx.y).
+4) Open the cell manager, select the cell in the right VAL 3  version (or create it) and choose the de‐
+sired add-on in the ADD-ONS section.
+5) Save the cell.
+6) Now, add-on keywords are recognized in SRS and VAL 3 checker.
+5.5.3 - FOR CONTROLLERS WITH SRC VERSIONS S6.4 AND LATER M0003939.1
+1) Stop the emulator.
+2) Close SRS.
+3) Run the add-on installation program (If the VAL 3 emulator corresponding to the VAL 3 version of
+the add-on is not installed on the PC an error message box will appear).
+4) Restart SRS.
+5) Open the cell manager, select the cell in the right VAL 3  version (or create it) and choose the de‐
+sired add-on in the ADD-ONS section.
+6) Save the cell.
+7) Now, add-on keywords are recognized in SRS and VAL 3 checker.
+5 - CELL EDITION
+16/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 17 =====
+6 - LOCAL CONTROLLER EDITION .
+6.1 - ROBOT TYPE M0003940.1
+Right click on a controller and select the CONTROLLER CONFIGURATION command. Select the robot
+model or the ROBOT SKIN and validate your choice with OK.
+■ For controllers with a version SRC earlier than s7.6, running emulators must be restarted manually
+to see the new arm type.
+■ For controllers with a version later than or equal to s7.6, SRS automatically restart the emulators.
+6.2 - I/O CONFIGURATION M0003941.1
+Right click on a controller and select the CONTROLLER CONFIGURATION command. Move to the I/O
+section (Right click then PHYSICAL IOs) and select the cards that you want to use on the controller.
+■ For controllers with a SRC version earlier than s7.6, running emulators must be restarted manually
+to see the new selected I/Os.
+■ For controllers with a version later than or equal to s7.6, SRS automatically restart the emulators.
+6.3 - I/O EDITION M0003942.1
+It is possible to edit the PHYSICAL IOs descriptions by running the HOME\PHYSICAL I/Os command.
+Use the SAVE command to save your modifications.
+6.3.1 - IO MAP EDITOR M0004851.1
+The purpose of the IOMAP is to map some of the robot system functionalities (arm power, move/hold,
+jog keys,etc…) to input and output signals, so that these functionalities can be controlled by an exter‐
+nal device (such as a PLC). Note that some of these mapping will only work under certain conditions
+(teach pendant replaced by the dummy plug), or might require a runtime license to be installed on the
+robot controller (remoteMCP option).
+The first step in editing the IOMAP configuration on an emulated controller is to open
+the PHYSICAL IOs panel. To do so, right-click on the controller in the  CELL EXPLORER , DADA,
+or GEOMETRY panels, and select PHYSICAL IOs  
+ . This option is also available in the HOME tab of
+the ribbon when the controller is selected.
+When the PHYSICAL IOs panel opens up, a contextual tab of the same name also opens up in the
+main ribbon. From there, click the SHOW IO MAP EDITOR button 
+ .
+The IO MAP EDITOR panel opens up. This panel contains a list of functions, with 3 columns.
+Starting from the left:
+■ Column 1 is the name of the function.
+■ Column 2 contains a description of this function.
+■ Column 3 is meant to receive the physical address of the input or output signal that will control this
+function.
+To set the physical address in column 3 for a specific function, simply double-click on the correspond‐
+ing cell. This opens up a selection window that shows all the available IOs of the corresponding con‐
+troller. Navigate to the signal by unfolding the nodes, and select the one to assign to the function by
+double-clicking it. The selection window will then close, and the signal’s address appears in column 3.
+Once the IOMAP configuration is finished, save it by clicking the  SAVE or SAVE ALL buttons 
+  at
+the top of SRS main window.
+6 - LOCAL CONTROLLER EDITION
+SRS © Stäubli 2019 – D.280.959.04-B 17/76
+
+===== PAGE 18 =====
+Your configuration can now be transferred to the real controller (See chapter 10.3  for more details on
+this topic).
+6.3.2 - POWERLINK OR ETHERCAT FIELDBUS CONFIGURATION (ON CS8) M0003943.1
+To create a Powerlink or Ethercat configuration, select ADD I/O BOARD  command then select the
+fieldbus protocol (Powerlink or Ethercat). Validate your choice with OK. Before adding input or output,
+you need to add a module using the ADD MODULE command.
+6.3.3 - MODBUS I/O CONFIGURATION (ON CS8) M0003944.1
+This tool is used to create the modbus.XML file containing the declarations for the modbus serv‐
+er I/Os. To transfer the modbus.XML file to or from a controller, use the  TRANSFER MANAGER tool
+(See: Transfer to or from a controller).
+To create or modify the file, execute the tool via
+the HOME\PHYSICAL I/Os\MODBUS I/O CONFIG  command. Click on the NEW button to create a
+new MODBUS configuration or open an existing one with the OPEN button. If a MODBUS file already
+exists in the cell it is opened automatically. Click on the  SAVE button to save the configuration. Note
+that the name of the file must be "modbus.XML" to be taken into account by the controller.
+To add an item, click on the new button  on the item toolbar. Then choose the name, the type, the size
+and the access. Items can be inserted through the insert button or deleted with the  DELETE button.
+The order of items can be changed by dragging and dropping the entry. It is possible to append an
+existing MODBUS configuration file with the APPEND FILE button. The corresponding CSV file can be
+created through the EXPORT TO CSV button. This file is needed to configure the  Applicom OPC serv‐
+er (APPLICOM IMPSYMB).
+6.3.4 - FIELDBUS I/O CONFIGURATION (ON CS9) M0004852.1
+The first step in creating a fieldbus configuration on an emulated CS9 is to open
+the PHYSICAL IOs panel. To do so, right-click on the controller in the  CELL EXPLORER , DADA,
+or GEOMETRY panels, and select PHYSICAL IOs  
+ . This option is also available in the HOME tab of
+the ribbon when the controller is selected.
+When the PHYSICAL IOs panel opens up, a contextual tab of the same name also opens up in the
+main ribbon. From there, click the ADD I/O BOARD button 
+ .
+A small window opens up, select the type (protocol, device type, hardware type) from the pulldown list
+at the top. In some cases, a checkbox to add a safety profile may also appear. Check it if needed.
+You may also in some rare cases have to select a configuration software, which by default
+is Sycon.net.
+Sycon.net will then launch and display a login prompt, leave the username and password fields as
+they are and simply press Ok.
+For assistance in using Sycon.net to build the IO configuration, please refer to the embedded manual
+accessible from the Help menu of the software.
+Once the configuration is built, save it in Sycon.net, then close the software.
+Return to the PHYSICAL IOs panel of SRS, and if necessary refresh it with the REFRESH button 
+  in
+the PHYSICAL IOs tab of the main ribbon.
+Your configuration should now appear in the PHYSICAL IOs panel. It can now be transferred to the
+real CS9 (See chapter 10.3  for more details on this topic).
+Note: The entire Sycon.net project folder is transferred to the real  CS9 along with the configuration
+files. The purpose of this is to keep a backup of the configuration, that can later be retrieved from
+the CS9 in case it ever needs to be modified.
+6 - LOCAL CONTROLLER EDITION
+18/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 19 =====
+6.3.5 - TCP/IP AND UDP SOCKETS CREATION (CS9 ONLY) M0004853.1
+The first step in creating sockets on an emulated CS9 is to open the  PHYSICAL IOs panel. To do so,
+right-click on the controller in the CELL EXPLORER , DADA, or GEOMETRY panels, and se‐
+lect PHYSICAL IOs  
+ . This option is also available in the HOME tab of the ribbon when the controller
+is selected.
+When the PHYSICAL IOs panel opens up, right-click on the  SOCKETS node, and se‐
+lect EDIT BOARD  
+  from the contextual menu. This opens up the SOCKET EDITION window.
+To add a socket, click on the corresponding button  
+  at the bottom left of
+the SOCKET EDITION window. Select a type of socket from the list, and the socket will be immediate‐
+ly created. Set the socket’s parameters in the right half of the SOCKET EDITION window.
+To delete a socket, select it from the list, and click the  DELETE button 
+  at the bottom left of
+the SOCKET EDITION window.
+You may add as many sockets as necessary, when you are finished, click the OK button. The created
+sockets will then appear under the  SOCKETS node of the PHYSICAL IOs panel. The sockets can now
+be transferred to the real CS9 (See chapter 10.3  for more details on this topic).
+6.4 - OPTIONS MANAGEMENT M0003945.1
+Right click on a controller and select the CONTROLLER CONFIGURATION  command. Move to
+the Option section and select the options that you want to use on the controller.
+■ For controllers with a SRC version earlier than s7.6, running emulators must be restarted manually
+to see the new option.
+■ For controllers with a version later than or equal to s7.6, SRS automatically restart the emulators.
+6.5 - PROPERTIES M0003946.1
+Right click on a controller and select the PROPERTIES 
+  command (F4).
+6.5.1 - MISC SECTION M0004854.1
+This section contains all the basic parameters of the emulated controller and the SRS cell it belongs to
+(name, path of the cell, type of robot, and SRC version of emulator).
+6.5.2 - POSITION SYNCHRONIZER MODE M0003949.1
+This property allows selecting which robot is synchronized with the 3D model.
+During a simulation you can either synchronize the robot position with an emulator or with a target.
+■ NONE: The robot position is never updated.
+■ EMULATOR: The robot position is synchronized with an emulator.
+■ TARGET: The robot position is synchronized with a target (real robot). Target connection informa‐
+tion is specified via the TARGETS window (see chapter  10.1  for more details), accessible via
+the REMOTE PROPERTIES SECTION (see chapter 6.5.3  for more details).
+6.5.3 - REMOTE PROPERTIES SECTION M0004855.1
+These properties come from the TARGETS window.
+See chapter 10.1  for more details.
+6 - LOCAL CONTROLLER EDITION
+SRS © Stäubli 2019 – D.280.959.04-B 19/76
+
+===== PAGE 20 =====
+20/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 21 =====
+7 - WORKING WITH THE 3D .
+7.1 - 3D OBJECTS .
+7.1.1 - GEOMETRIES M0004037.1
+GEOMETRIES are the most basic type of 3D solid available in SRS. These GEOMETRIES can be ob‐
+tained either by using the embedded 3D modeler, or by importing CAD models.
+7.1.1.1 - 3D modeler M0003990.1
+The 3D modeler allows the insertion of 3D primitives into the 3D SCENE. These primitives are para‐
+metric.
+The primitives are inserted with the MODELING\ADD\<primitive> command 
+ ,
+with <primitive> being a BOX  
+ , a SPHERE  
+ , or a CYLINDER  
+ .
+Once inserted, the parameters of the geometry (dimensions, colors, transparency, collision,…) can be
+edited through the PROPERTIES panel ( HOME\GENERAL\PROPERTIES 
+ ) by selecting it in the
+3D SCENE.
+7.1.1.2 - Importing CAD models M0003991.1
+CAD models of several different formats (STEP, IGES, STL, WRL, JT) can be imported into
+the (STEP, IGES, STL, WRL, JT). These models can then be edited, to some extent.
+Importing a CAD file is done through the  MODELING\INSERT CAD command 
+ . Start by selecting
+the file to import by clicking on 
+  in the INSERT CAD  window, adjust the Import precision (lowering
+the precision can greatly reduce the final size of the imported model without deteriorating significantly
+the visual quality of the model), and selecting the importing mode out of 3 possibilities:
+■ Copy and insert the file: Creates a local copy of the imported CAD file into the CAD folder of the
+cell, then imports the corresponding GEOMETRIES into the 3D SCENE,
+■ Insert as link: Simply imports the GEOMETRIES into the 3D SCENE,
+■ Convert to VRML and insert file: First converts the original file to SRS' native 3D format, then in‐
+serts the 3D GEOMETRIES from the converted file. This option avoids the original CAD file to be
+converted every time the cell is loaded, thus resulting in much faster loading times, especially if it is
+combined with a lower import precision.
+After importation, it is possible to edit the imported GEOMETRIES:
+■ Move individual child objects around: The object needs to be first selected from the tree view (by
+expanding the nodes of the corresponding branch) or from the 3D SCENE (multiple clicks on the
+object to select, each click goes one step deeper into the model, until only the object in question is
+highlighted). Once selected, the object needs to be unlocked ( RIGHT-CLICK\UNLOCK) to separate
+it from the original geometry (it will also move out of the branch in the tree view and into the root). It
+can then be moved around.
+■ Going deeper into a branch: By default, each geometry is limited to  3 levels of depth. It is possible
+to go deeper into a specific branch (to select more finely so 3D objects that belong to a specific
+assembly) by using the RIGHT-CLICK\CLONE AND EXPAND command on a 3D geometry. This
+command creates a new copy of the selected 3D geometry in the root of the geometry node. This
+copy can then be expanded to navigate through its nodes, which in turn can be unlocked, or
+cloned and expanded.
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 21/76
+
+===== PAGE 22 =====
+7.1.1.3 - EDITING THE REFERENCE FRAME OF A GEOMETRY M0003992.1
+The reference frame is the point of reference on a geometry that is used to determine the position and
+orientation of this geometry in the 3D space.
+To edit the reference frame of a geometry, select it and use
+the MODELING\EDIT REFERENCE FRAME command 
+ .
+Once in edition mode, nothing else in the  3D VIEW but the reference frame can be selected and repo‐
+sitioned. This repositioning can be done with any one of the OBJECT POSITIONERS, or the position
+edition panel (see chapter 7.2.1 ) .
+Once finished, exit edit mode by clicking again on the MODELING\EDIT REFERENCE FRAME  com‐
+mand.
+7.1.1.4 - LINKING A GEOMETRY TO A ROBOT JOINT M0003995.1
+To link a geometry to a joint of a robot, proceed as follows:
+■ Position the geometry where it needs to be in relation to the robot joint it needs to be attached to
+(by using any object positioner or the edit position panel) (see chapter 7.2.1 ).
+■ Select the robot joint and the geometry (hold down CTRL key while clicking on both).
+■ Right click and select LINK TO ROBOT.
+To remove the link, right click on the linked geometry and select UNLINK FROM ROBOT.
+It is not possible to link a geometry to joint 6 (FLANGE) of a anthropomorphic robot or
+joint 3 and 4 (ballscrew) of a SCARA. Instead make a tool and attach it.
+7.1.2 - DEVICES .
+7.1.2.1 - HANDLES and HANDLERS: Basic principles M0003997.1
+HANDLES and HANDLERS are 3D objects used to attach/detach GEOMETRIES to each other.
+■ A HANDLER can be attached to a HANDLE,
+■ A HANDLER can be attached to only one HANDLE at the same time,
+■ A HANDLE cannot be attached to 2  HANDLERS.
+HANDLES and HANDLERS can be found in:
+I0001854
+Figure 7.1
+7 - WORKING WITH THE 3D
+22/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 23 =====
+I0003543
+Figure 7.2
+7.1.2.2 - Robots M0003998.1
+A robot is considered as a 3D device. Robots have a HANDLE and a HANDLER.
+Robot creation
+See chapters 5.2 , 5.3  and 5.4 .
+Robot selection
+It is possible to select a robot:
+■ In the 3D tree view in the ROBOTS node,
+■ In the 3D SCENE by double clicking on one of its geometry.
+A single click selects the geometry of the robot, a double click select the entire robot.
+Robot edition
+To change the 3D ROBOT SKIN:
+■ Select the entire robot (see Robot selection above),
+■ Go to the PROPERTIES panel (HOME\GENERAL\PROPERTIES 
+  ),
+■ Select a skin in the ROBOT SKIN pulldown list.
+To display the work envelope of a robot, select it in the TREE VIEW (see chapter 7.3 ), right click and
+select the SHOW WORKSPACE <RIGHTY/LEFTY> command.
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 23/76
+
+===== PAGE 24 =====
+To change the color, transparency, visibility, and collision properties of a robot joint:
+■ Select the individual joint (see Robot selection above),
+■ Go to the PROPERTIES panel (HOME\GENERAL\PROPERTIES 
+  ),
+■ Set the value of the corresponding attribute in the PROPERTIES panel.
+For more robot edition options (software options, I/O cards, ...): See chapter 6 .
+7.1.2.3 - Tools M0004002.1
+A graphic tool contains one HANDLE and one or more HANDLERS (graphical TOOL CENTER POINT).
+Tool creation
+To create a graphic tool, select a geometry in the 3D VIEW and click on
+the MODELING\DEVICES AND PARTS\NEW\TOOL command 
+ .
+A new tool with one HANDLE and one HANDLER is added in the TOOLS node. It is possible to rename
+the tool from the PROPERTIES window (F4).
+Tool selection
+It is possible to select a tool:
+■ In the 3D tree view in the TOOLS node,
+■ In the 3D SCENE by double clicking on one of its geometry. A single click selects the geometry of
+the tool, a double click select the entire tool.
+Tool edition
+To start a tool edition, select it and use the MODELING\DEVICES AND PARTS\EDIT command 
+ .
+While you are editing a tool, it is no more possible to move or select other objects in the 3D. All
+the GEOMETRIES, the HANDLE and the HANDLERS of the current tool are highlighted in yellow and
+can be edited.
+It is possible to add, remove and edit the positions of the HANDLE and HANDLERS.
+HANDLE and HANDLERS can be moved either manually with OBJECT POSITIONERS or by
+using the HOME\3D VIEW\EDIT POSITION window.
+■ To end tool edition, click again on the MODELING\DEVICES AND PARTS\EDIT command 
+ .
+Attach/Detach a tool
+A tool can be attached to a robot or to another tool by its HANDLE.
+■ To attach a tool, select it, click on the MODELING\DEVICES AND PARTS\ATTACH TO com‐
+mand 
+  and select a HANDLER 
+ . If the tool is attached to a robot, the current  TCP is auto‐
+matically defined on the first HANDLER of the tool.
+■ To detach a tool, select it a click on the MODELING\DEVICES AND PARTS\DETACH com‐
+mand 
+ .
+Define the current TCP
+When a tool is attached to a device, it is possible to change the current TCP.
+Select the HANDLER in the 3D VIEW  and click on
+the MODELING\DEVICES AND PARTS\SET AS CURRENT TCP command.
+The Cartesian mover now opens on this TCP. The transformation value of the handler can also be cop‐
+ied so it can be pasted into a tool variable.
+7 - WORKING WITH THE 3D
+24/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 25 =====
+7.1.2.4 - Parts M0004008.1
+A part contains one or more HANDLES (grasping points) and no HANDLERS.
+Part creation
+To create a graphic part, select a geometry in the 3D VIEW  and click on
+the MODELING\DEVICES AND PARTS\NEW\PART command 
+ .
+A new part with one HANDLE Parts node. It is possible to rename the part from
+the PROPERTIES window (F4).
+Part selection
+It is possible to select a part:
+■ In the 3D tree view in the PARTS node,
+■ In the 3D SCENE by double clicking on one of its geometry. A single click selects the geometry of
+the part, a double click select the entire part.
+Part edition
+To start a part edition, select it and use the MODELING\DEVICES AND PARTS\EDIT command 
+ .
+While you are editing a part, it is no longer possible to move or select other objects in the 3D. All
+the GEOMETRIES as well as the HANDLES of the current part are highlighted in yellow and can be
+edited.
+It is possible to add, remove and edit the positions of the HANDLES.
+HANDLE can be moved either manually with OBJECT POSITIONERS or by using
+the HOME\3D VIEW\EDIT POSITION window.
+To end part edition, click again on the MODELING\DEVICES AND PARTS\EDIT command 
+ .
+The position of the parts in the cell can be saved, reset, or dropped. See chapter 7.4 .
+Attach/Detach a part
+A part can be attached to a robot or to a tool by one of its HANDLES.
+■ To attach a part, select it, click on the MODELING\DEVICES AND PARTS\ATTACH TO com‐
+mand 
+  and select a HANDLER 
+ .
+■ To detach a part, select it a click on the MODELING\DEVICES AND PARTS\DETACH  com‐
+mand 
+ .
+7.1.3 - CONSTRUCTION FRAMES M0004043.1
+A "CONSTRUCTION FRAME" is a kind of graphic frame built by the user in the 3D environment.
+Graphic frames are saved in the 3D CELL (Not in a VAL 3 application).
+A construction is created and positioned at the same time by using the corresponding creation/posi‐
+tioning tool.
+The CONSTRUCTION FRAMES creation/positioning tools are located
+in MODELING\GEOMETRIES\ADD menu 
+  (same as 3D primitives).
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 25/76
+
+===== PAGE 26 =====
+A CONSTRUCTION FRAME can be created:
+■ At the center of 3  VERTICES (CENTER FROM 3 POINTS command 
+ ),
+■ Perpendicular to a surface (PERPENDICULAR command 
+ ),
+■ At the center of 2  VERTICES (MIDDLE OF SEGMENT command 
+ ),
+■ On a point (VERTEX command 
+ ),
+■ By selecting one point for the origin and one point for the direction of each axis of
+the CONSTRUCTION FRAME (X and Y) (ORIGIN, X, Y command 
+ ).
+■ On the reference frame of a previously selected 3D object (ON REFERENCE FRAME command 
+ )
+Once the creation/positioning tool is clicked, select the corresponding amount of points/ VERTICES in
+the 3D SCENE to complete the procedure.
+During the creation process, instructions are displayed in the status bar. It is possible to interrupt the
+sequence by pressing the escape key or clicking in the background of the 3D SCENE.
+7.2 - 3D OPERATIONS .
+7.2.1 - MOVING 3D OBJECTS M0003994.1
+Edit absolute and relative position
+Open the windows HOME\3D VIEW\EDIT POSITION and select an object in the 3D VIEW. It is possible
+to edit relative position (relatively to the position of the object at the moment it was selected) or the
+absolute position (relative to the zero of the cell).
+To restore the initial position, press the escape key.
+OBJECT POSITIONERS
+Several move commands are available in the MODELING ribbon.
+These commands apply to the currently selected 3D object (geometry or device), as a consequence it
+is necessary to select an object in the 3D SCENE before activating a mover.
+The reference on the selected object is either its reference frame (geometry), or its first handle (tools,
+parts, robots). This reference is the point of the selected object that will mate with the move destina‐
+tion defined by the chosen object positioner.
+By default, all these commands potentially affect the position AND the orientation (in full or in part) of
+the selected object.
+■ CENTER FROM 3 POINTS 
+ : Moves the selected object to the center of 3  VERTICES or points
+successively selected in the 3D VIEW. In terms of orientation, this positioner is only deterministic
+for the selected object reference's Z axis, which will be normal to the plane described by
+the 3 selected points.
+■ MIDDLE OF SEGMENT 
+ : Moves the selected object to the center of 2  VERTICES or points
+successively selected in the 3D VIEW. The X axis of the selected object will be collinear with the
+segment described by the 2 selected points, and the Z axis will be normal to this segment.
+■ POINT TO POINT 
+ : Moves the selected object to a VERTEX or point selected in the 3D VIEW.
+If the move target is a VERTEX (3D summit), the final orientation of the selected object reference
+will be the one of the cell reference. If the move target is a point
+(CONSTRUCTION FRAME, VAL 3 point or frame, HANDLE,...), the final orientation of the selected
+object reference is the one of this target point.
+7 - WORKING WITH THE 3D
+26/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 27 =====
+■ ORIGIN, X, Y 
+ : Moves the selected object to a frame defined by the 3 point method (origin, X
+axis direction, Y axis direction). These 3 points need to be successively selected in
+the 3D VIEW (VERTICES or points). The selected object reference will mate completely in position
+and orientation with the ones of the defined frame.
+■ 3D OFFSET 
+ : Moves the selected object by a three dimensional offset defined by the selection
+of 2  VERTICES or points in the 3D SCENE. The selected points can belong to any object, including
+the selected object itself (the one to be moved). This positioner does not affect the orientation of
+the selected object.
+■ LOCKING POSITION/ORIENTATION: The positioners can be allowed to affect only the position of
+the selected object, or only its orientation, or both. To do so, use the 3 buttons located next to the
+movers:
+-
+  Position and rotation: The positioners affect both the position and the orientation of the se‐
+lected object.
+-
+  Position only: The positioners only affect the position of the selected object.
+-
+  Rotation only: The positioners only affect the orientation of the selected object.
+During the selection of VERTICES or points, instructions are displayed in the top-right corner of
+the 3D VIEW. It is possible to interrupt the sequence by pressing the escape key.
+7.2.2 - GROUP/UNGROUPING GEOMETRIES M0004012.1
+Select several GEOMETRIES (hold down CTRL key on keyboard and successively click on multi‐
+ple GEOMETRIES in the 3D SCENE or the 3D tree view), right click and select the GROUP command.
+7.2.3 - COPY / CUT / PASTE / UNDO / REDO M0004013.1
+Select an object (GEOMETRY, TOOL, or PART) in the 3D SCENE or in the 3D tree view, right click and
+select the corresponding command (COPY 
+    / CUT 
+    / PASTE 
+  ). The traditional keyboard
+shortcuts are also available.
+It is also possible to undo / redo one or more operations in the 3D  SCENE by using the corresponding
+buttons in the top left corner of the main window 
+ . The traditional keyboard shortcuts are also
+available.
+7.2.4 - EXPORTING THE SCENE M0004038.1
+Allows the export of the 3D SCENE in WRML, STL or JT format. To do so execute
+the MODELING\EXPORT command 
+ .
+You can then select one out of 3 options:
+■ SELECTION: Only exports the current 3D selection,
+■ VISIBLE OBJECTS: Exports everything that is not hidden in the 3D VIEW,
+■ ALL: Exports everything.
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 27/76
+
+===== PAGE 28 =====
+7.2.5 - DISPLAY SETTINGS M0004014.1
+From the SIMULATION ribbon, click on the DISPLAY SETTINGS button 
+ .
+From there, you can adjust the following 3D parameters:
+■ FRAME SIZE 
+ : Sets the dimensions of the 3D frames (shortcut: hold down shift key + mouse
+wheel),
+■ SHOW TREE VIEW: Toggles visibility of 3D tree view (see chapter 7.3 ),
+■ GROUNDPLANE VISIBLE: Toggles visibility of ground plane,
+■ SHOW WIREFRAME 
+ : Switches the 3D VIEW to wireframe mode (reduces performances),
+■ SHOW FLATSHADED 
+ : Deactivates shades (increases performances),
+■ SHOW OUTLINE: Displays outlines on 3D objects (reduces performances),
+■ ONE VIEW (default)  
+ : One single 3D VIEW,
+■ TWO VIEWS 
+ : Splits 3D into 2 independent views,
+■ THREE VIEWS 
+ : Splits 3D into 3 independent views,
+■ FOUR VIEWS 
+ : Splits 3D into 4 independent views.
+7.3 - 3D TREE VIEW M0003993.1
+The tree view embedded in the 3D VIEW is used to select the 3D objects. It is possible to show/hide
+the tree view with the SIMULATION\DISPLAY SETTINGS\SHOW TREE VIEW command.
+7.3.1 - TREE VIEW NODES CONTENT M0004015.1
+■ GEOMETRY node 
+ : Contains all the GEOMETRIES in the cell. See chapter 7.1  for more details
+on GEOMETRIES.
+■ ROBOTS node 
+ : Contains all the robots in the cell, one node per robot, with imbricated sub-no‐
+des for the various robot elements (joints, GEOMETRIES, workspace). See chapter 7.1  for more
+details on ROBOTS.
+■ TOOLS node 
+ : Contains all the tools in the cell, one node per tool with sub-nodes for the various
+elements (geometry, handle, handler). See chapter 7.1  for more details on TOOLS.
+■ PARTS node 
+ : Contains all the tools in the cell, one node per tool with sub-nodes for the various
+elements (geometry, handle, handler). See chapter 7.1  for more details on PARTS.
+■ COLLISIONS SETTINGS node 
+ : Parameters for collision detection. Exceptions can be removed
+by selecting it first then pressing the DELETE key on the keyboard.
+■ CAMERAS node 
+ : Contains the points of view. These points of view can be either system-de‐
+fined (top, bottom, left, right, front, back, and perspective), or user-defined (see chapter 7.4 ).
+7 - WORKING WITH THE 3D
+28/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 29 =====
+7.4 - 3D NAVIGATION M0003987.1
+Mouse buttons:
+■ Left = Select
+■ Mouse wheel rotation = Zoom
+■ Mouse wheel/Middle button (hold) = Pan
+■ Mouse wheel/Middle button + Right click (hold) = Rotation
+■ Mouse wheel/Middle button click: Center view on clicked location or point
+Keyboard shortcuts:
+■ Shift+Left Click = Zoom
+■ Alt+Left Click = Rotation
+System-defined CAMERAS:
+■ From the CAMERAS node in the 3D tree view, double-click on a camera to move to the corre‐
+sponding view.
+■ From the 3D menu bar, click on the corresponding button:
+ 
+I0002032
+ 
+Keyboard shortcuts are also available:
+■ T for top,
+■ O for bottom (B is already used for back),
+■ L for left,
+■ R for right,
+■ F for front,
+■ B for back,
+■ P for perspective.
+User-defined CAMERAS:
+■ To add a new camera, right click in the void space in the 3D  SCENE (make sure no object is selec‐
+ted) or on the CAMERAS node in the tree view, then select INSERT CAMERA.
+■ The camera is added in the tree view, under CAMERAS, by default the current point of view is stor‐
+ed in it.
+■ The corresponding point of view can be selected by double-clicking on the camera in
+the TREE VIEW.
+■ The point of view can also be updated by right clicking on a camera in the tree view and select‐
+ing UPDATE POINT OF VIEW.
+7.5 - SIMULATION .
+7.5.1 - ROBOT FREE JOG M0004016.1
+■ JOINT MOVER 
+ : Jog a single robot joint (Needs to be selected first).
+■ CARTESIAN MOVER 
+ : Cartesian jog of a robot about the axis of its current TCP.
+■ MOVE HERE 
+ : Move the robot to a position (if reachable) using the selected device. Select first
+a CONSTRUCTION FRAME, a VAL 3 geometric data, a HANDLER or a PART and click on the com‐
+mand.
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 29/76
+
+===== PAGE 30 =====
+7.5.2 - JOG PANEL M0004856.1
+The multifunction JOG panel can be accessed by right-clicking on a robot and selecting JOG in the
+contextual menu.
+Once opened, this panel presents a list of all the robots in the cell as a series of buttons. Start by se‐
+lecting the robot, this is simply done by pressing one of the buttons. Hovering the mouse on these
+buttons will display more detailed information about the arms in a tooltip, example:
+ 
+I0004344
+ 
+The selection of the robot to use the JOG panel panel onto can also be done graphically, by selecting
+a robot in the 3D VIEW after opening up the JOG panel panel. This graphical selection can also be
+locked by clicking the LOCK WITH SELECTION button 
+  at the very top of the panel. As a result,
+the JOG panel apply changes to the arm it has been locked to even though a different arm might be
+selected in the 3D VIEW.
+The JOG panel is composed of 4 sections:
+ARM CONFIGURATION , CARTESIAN POSITION , JOINTS POSITION, and GRAPHIC MOVER, each
+described in the following chapters.
+Each section can be expanded or collapsed by clicking the section’s title line.
+7.5.2.1 - First section: ARM CONFIGURATION management M0004857.1
+The configurable arm elements vary based on the type of robot:
+■ 4- axis SCARA: Shoulder only.
+■ 6-axis anthropomorphic: Shoulder, elbow, and wrist.
+For each element of the arm, up to two possible configuration values can be selected from:
+■ Shoulder: Lefty or righty.
+■ Elbow: Negative or positive.
+■ Wrist: Negative or positive.
+Locking the configuration: To lock the configuration of one of those elements, use the corresponding
+locking button 
+ . Locking an element prevents it from changing configuration unexpectedly while jog‐
+ging the robot graphically with the CARTESIAN MOVER (see chapter 7.5.1 ).
+Toggling the configuration: To toggle the configuration of one of those elements, use the corre‐
+sponding toggling button 
+ . This will toggle the configuration on the selected element, if the current
+arm position allows it.
+The current configuration of each of the arm’s element is displayed next to the corresponding lock and
+toggle buttons.
+Selecting a configuration for all arm elements: Pressing the  CONFIGURATION DETAILS  but‐
+ton 
+  displays a table of all possible combinations for the current arm position (up to  8 for a 6-axis
+anthropomorphic robot, up to 2 for a 4-axis SCARA). A single click on one of these combinations will
+apply it to the corresponding robot arm.
+7 - WORKING WITH THE 3D
+30/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 31 =====
+7.5.2.2 - Second section: CARTESIAN POSITION of the robot TOOL CENTER POINT M0004858.1
+This sections contains 6 editable fields (X, Y, Z in mm, Rx, Ry, Rz in degrees) representing the cartesi‐
+an position of the current TCP of the robot in respect to the robot WORLD frame. These values are
+refreshed when the robot is jog graphically with the JOINT MOVER of the CARTESIAN MOVER (see
+chapter 7.5.1 ).
+It is also possible to enter values in the fields directly, or to use the embedded calculator by clicking
+on the EXPAND button 
+  attached to each field. The calculated value will be applied to the robot (if
+applicable) when the calculator is collapsed (new click on the EXPAND button or outside of the calcu‐
+lator in the JOG panel).
+7.5.2.3 - Third section: JOINTS POSITION of the robot M0004859.1
+This section contains up to 6 adjustable range-type inputs, one for each joint of the selected robot. A
+slider 
+  on each one shows the current position of the corresponding joint. This slider can be moved
+with the mouse (click and drag) to jog the corresponding robot joint.
+The current value of a joint can also be entered manually in the editable field, on the right-hand side of
+the corresponding range.
+Hovering the mouse on a slider or on a field displays a tooltip containing the limits of the correspond‐
+ing joint, as well as its current position with up to 9 decimal places.
+The covered range for each joint can also be displayed by clicking the CYCLE RANGE button 
+  at
+the top of the JOG panel. The color of the covered range for each joint indicates if the corresponding
+joint has been within 10 degrees of at least one of its two limits during the cycle (orange 
+ ), or if it has
+reached at least one of them (red 
+ ). Otherwise, the covered range remains light blue 
+ .
+7.5.2.4 - Fourth section: GRAPHIC MOVERS M0004860.1
+This section contains 4 movers based on vertex selection, and similar (but not identical) to the
+first 4  OBJECT POSITIONERS of the MODELING ribbon.
+These movers will bring the current TCP of the selected robot to a point defined by the corresponding
+procedure.
+The procedures are:
+■ CENTER FROM 3 POINTS 
+■ MIDDLE OF SEGMENT 
+■ POINT TO POINT 
+■ ORIGIN, X, Y 
+To position the robot’s TCP with one of these procedure, first click the corresponding button, then se‐
+lect the corresponding amount of points/VERTICES in the 3D VIEW to execute the procedure.
+For more details on these procedures, see chapter 7.2.1  of this manual.
+7.5.3 - VAL 3 DATA M0004017.1
+When a VAL 3 geometric value is selected, it is possible to use the following commands:
+■ MOVE TO 
+ : Moves the robot to the selected VAL 3 value (If reachable).
+■ SET AS CURRENT TOOL 
+ : Sets the currently selected value as the current TCP of the robot.
+■ HERE 
+ : Records the current position of the robot into the selected VAL 3 value.
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 31/76
+
+===== PAGE 32 =====
+■ HERE WITH CONFIGURATION: Records the Cartesian position of the current TCP into the TRSF of
+the selected VAL 3 point, and the current configuration of the robot arm into the CONFIG of the
+selected VAL 3 point.
+■ SHOW\HIDE 
+ : Displays the VAL 3 variable in the 3D SCENE.
+■ SHOW ALL\HIDE ALL 
+ : Displays the VAL 3 variable and its children in the 3D SCENE.
+■ CLOSE UP 
+ : This command does the following:
+- Displays the VAL 3 variable in the 3D VIEW,
+- Centers the 3D VIEW on it,
+- Makes it the current selection.
+Note: This command can be found in the contextual menu, after a right-click on a  VAL 3 point,
+frame, or tool.
+■ SELECT IN 3D VIEW: This command does the following:
+- Displays the VAL 3 variable in the 3D VIEW,
+- Makes it the current selection.
+Note: This command can be found in the contextual menu, after a right-click on a  VAL 3 point,
+frame, or tool.
+■ START/STOP ACCESSIBILITY:
+- Once the function is activated from the SIMULATION ribbon, the color of each VAL 3 point/
+frame displayed in the 3D VIEW changes based on whether or not the corresponding point or
+frame is reachable, not reachable, or not reachable in all arm configurations.
+- Green means the VAL 3 point/frame is reachable with current arm configuration.
+- Orange means the VAL 3 point/frame is only reachable in some of the arm configurations but
+not with the current one.
+- Red means the VAL 3 point/frame is not reachable in any arm configuration.
+- Example with 3 points (the one at the far left is unreachable, the one in the middle is reachable
+in all arm configurations, and the right one is reachable in some arm configurations only):
+I0004359
+Figure 7.3
+7.5.4 - TRACES M0004018.1
+SHOW TRACES command displays a frame at the TCP position when the robot moves. To
+erase TRACES, use the CLEAR TRACES command.
+7 - WORKING WITH THE 3D
+32/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 33 =====
+7.5.5 - COLLISION DETECTION M0004019.1
+By default, collisions are detected between:
+■ Every robot and GEOMETRIES of the cell.
+■ Current selection (Example: When moving a cube in the 3D).
+If a collision is detected, the colliding parts are colored in red. If geometry is within a part's clearance
+zone, the objects are colored in yellow.
+It is possible to exclude an object from the collision detection by unchecking
+the PROPERTIES\COLLISION ACTIVED command.
+To Start/Stop the detection of collisions, activate the COLLISIONS 
+  command in
+the SIMULATION ribbon.
+7.5.5.1 - COLLISIONS SETTINGS M0004020.1
+Exclusions
+All the rules used to detect collisions for robots are listed in the 3D tree view under
+the COLLISIONS SETTINGS node.
+It is possible to exclude GEOMETRIES from the collision detection.
+To do so, select one or more robot joints and one or more GEOMETRIES using the CTRL key.
+Right click in the 3D and select ADD COLLISION EXCLUSION command.
+To remove a rule, select it in the 3D tree view and press the del key.
+CLEARANCE
+The clearance is the warning zone around an object.
+This parameter can be edited from the PROPERTIES windows (F4).
+Note that if the shape of the object is complex, a high clearance value might reduce the performance
+of the 3D SCENE.
+Display
+■ INTERSECTION VISIBLE: Displays intersections between colliding objects.
+■ COLLIDING TRIANGLES VISIBLE: Displays graphic triangles in collisions.
+■ CLEARANCE VISIBLE: Shows the warning zone around objects.
+■ PENETRATION VISIBLE: Displays the penetration distance between the colliding objects.
+Note that the clearance and penetration features might reduce the performance of the 3D SCENE.
+7.5.6 - SYNCHRONIZATION M0004022.1
+This feature is used to synchronize robots positions with emulators or targets. By default, when open‐
+ing a cell, the synchronization is stopped.
+To control synchronization (START, STOP, STEP) use the commands located in the SYNCHRO ribbon.
+7.5.6.1 - INTERNAL CLOCK M0004042.1
+Polling is done by SRS: Every XX milliseconds, SRS retrieves the position from every controller, re‐
+freshes the 3D VIEW and checks for collisions (if the detection is activated). Note that the collision de‐
+tection is not very accurate as it is directly linked to the frequency of polling (The greater the clock
+value is, the less accurate the collision detection will be).
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 33/76
+
+===== PAGE 34 =====
+7.5.6.2 - REALTIME SIMULATION M0004023.1
+Realtime simulation using an external clock is the most accurate mode for collision detection.
+Refresh cycle when using external clock:
+1) Controllers are paused waiting for an external clock signal from SRS.
+2) SRS clocks the controllers (SRS asks where their respective robots will be in XX milliseconds).
+3) SRS updates the positions of the 3D robots.
+4) SRS checks for collisions.
+■ A realistic cycle time is displayed in the SYNCHRO ribbon and can be reset at any time using
+the RESET command.
+■ It is possible to run a step by step simulation using the STEP command.
+■ It is possible to stop automatically on first collision by checking
+the STOP ON FIRST COLLISION command.
+■ It is not possible to use the realtime simulation functionality on real controllers (Only emu‐
+lators can be controlled by an external clock).
+■ If a cell contains local controllers and remote controllers, the positions of robots connec‐
+ted to remote controllers are still refreshed at each step in the 3D VIEW, but are not
+based on the SRS clock (the remote controllers are using their own clock).
+7.5.6.3 - POSITION SYNCHRONIZER MODE M0004024.1
+On a local controller, several modes are available in the PROPERTIES window to synchronize the posi‐
+tion of the corresponding robot:
+■ NONE: The robot position is never updated.
+■ EMULATOR: The robot position is synchronized with an emulator.
+■ TARGET: The robot position is synchronized with the controller of which the IP address is given in
+the REMOTE CONNECTION PROPERTIES field.
+7.5.7 - RECORD PLAYER M0004861.1
+To play a record with a robot, it must first be loaded. To do so, expand a controller node in
+the GEOMETRY panel, right-click on the RECORDER node, and select LOAD RECORD from the con‐
+textual menu.
+Once it is loaded, the record appears under the RECORDER node with one of two icons:
+■ Correct kinematics (the current 3D arm driven by the selected controller matches the one the re‐
+cord was performed on): 
+■ Incorrect kinematics (the current 3D arm driven by the selected controller is different from the one
+the record was performed on): 
+- In this case, the path corresponding to the joint positions of the records the will not be correct
+in 3D VIEW as it will be calculated with the kinematics of the current 3D arm.
+To play a set of positions from this record, expand the record’s node, right-click on one of the Joint
+position data sets 
+  (command or feedback), and select PLAY A RECORD  
+  in the contextual
+menu. You can also from this same menu display or hide 
+  the record in the 3D VIEW ,
+and COPY  
+  the record (this action sends the recorded samples into the clipboard).
+7 - WORKING WITH THE 3D
+34/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 35 =====
+The RECORD PLAYER panel will then open, from which:
+■ The path can be:
+- Played forward 
+  or backward 
+- Paused 
+- Stepped through forward 
+  or backward 
+■ The current index can be viewed / set via the corresponding editable field.
+■ The current time can be viewed / set via the corresponding editable field.
+■ The speed scale multiplier can be set from the corresponding pulldown list.
+■ The current index and the current time can be also set together by dragging the corresponding
+range slider 
+■ A graphical MoveTo on one of the recording points in the  3D VIEW will also cause the slider to be
+repositioned on the corresponding point.
+If the record was exported from the Optimize Lab cycle analyzer, the analysis results can be displayed
+as a varying coloration of the path points.
+This coloration can be controlled from the PROPERTIES panel. First, select a record data set in
+the GEOMETRY panel and press F4 to open the PROPERTIES panel. Go to
+the CUSTOM COLOR DISTRIBUTION PROPERTY, and select an option from the pulldown list (only
+the parameters exceeding limits will be available). A detailed explanation of the meaning of the colors
+opens up when hovering the mouse over the question mark icon 
+  next to the property name.
+Examples:
+■ Joint velocity variation over the path:
+I0004372
+Figure 7.4
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 35/76
+
+===== PAGE 36 =====
+■ Joint 5 output torque:
+I0004373
+Figure 7.5
+7.5.8 - PARTS AND TOOLS .
+7.5.8.1 - Positions of parts in the cell M0004025.1
+The initial positions of the parts in the cell can be saved:
+■ Either on each individual part:
+Right click on a part and execute the SAVE ALL INITIAL POSITION command.
+■ Or on all parts at the same time:
+Execute the SIMULATION\SAVE ALL INITIAL POSITIONS command 
+ .
+7.5.8.2 - Teaching a point on a part M0004026.1
+To precisely teach a point on a part, it is possible to move a robot to it. To do so, right click on the part
+and execute the MOVE HERE command 
+  on the corresponding robot.
+The current TOOL CENTER POINT of the selected robot will move to the first handle of the part if it is
+reachable. Otherwise an error message is displayed.
+7.5.8.3 - Grasping a part: Tool configuration M0004027.1
+The first step to grasp a part with a tool is to proceed to the configuration of the tool.
+This is done from the DEVICE CONFIGURATION panel (Right click on a tool
+then DEVICE CONFIGURATION 
+ ). From this panel, you will then add tool behaviors by clicking on
+the corresponding button 
+ . A behavior can also be removed by first selecting it in the pulldown list,
+then clicking on the corresponding button 
+ .
+A behavior is essentially a state machine, with each state having specific grasp/release parameters. A
+behavior is linked to a TOOL HANDLER, each handler of a tool can then have its own unique state
+machine, so that tools with multiple grasping systems can grasp and release parts with each one of
+them independently.
+Adding a behavior triggers a wizard in which you can select pre-configured behaviors:
+■ GRASP BEHAVIOR: Typically used for two-state grippers (OPENED, CLOSED),
+■ SUCTION CUP BEHAVIOR: Typically used for two-state, suction-based tools,
+■ CUSTOM BEHAVIOR: Needs to be manually configured.
+You then need to select a handler to witch the behavior will be assigned.
+7 - WORKING WITH THE 3D
+36/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 37 =====
+Finally, you need to specify the output signal linked to this behavior, as well as the preferred status of
+this signal (level or edge).
+Although it remains fully customizable, if a GRASP BEHAVIOR or
+a SUCTION CUP BEHAVIOR is selected in the ADD BEHAVIOR wizard, nothing more needs
+to be done for the corresponding TOOL HANDLER to be able to grasp parts.
+Two states will then be automatically created:
+■ OPENED (release part) and CLOSED (grasp part) for GRASP BEHAVIOR. The specified output sig‐
+nal status is used to trigger the CLOSED state, and the same signal in the opposite status to trig‐
+ger the OPENED state. The grasp and release parameters are automatically set and assigned to
+the corresponding state.
+■ ON (grasp part) and OFF (release part) for SUCTION CUP BEHAVIOR. The specified output signal
+status is used to trigger the ON state, and the same signal in the opposite status to trigger
+the OFF state. The grasp and release parameters are automatically set and assigned to the corre‐
+sponding state.
+■ STATE1 and STATE2 for CUSTOM BEHAVIOR. The specified output signal status is used to trigger
+the STATE1 state, and the same signal in the opposite status to trigger the  STATE2 state. The
+grasp and release parameters need to be manually set up for each state.
+In the first section of the DEVICE CONFIGURATION panel, it is then possible to manually add states to
+a handler if necessary.
+You may also review/customize the parameters of the output signal used to trigger the state, and
+specify a feedback event (input signal) that will be automatically raised when the corresponding state
+is reached.
+In the HANDLER section of the DEVICE CONFIGURATION panel, you may then verify / customize
+the GRASP STATE of the selected behavior:
+■ Select the state in the GRASP STATE pulldown list,
+■ Select the type of grasp:
+- MAGNETIC: When a part is grasped, its nearest handle will mate with the correspond‐
+ing TOOL HANDLER, in position and orientation (example: grippers designed to reference the
+part in its jaws upon grasp),
+- AS IS: When a part is grasped, the position of its nearest handle in relation to the correspond‐
+ing TOOL HANDLER will remain unchanged (example: suction cups that can grasp on various
+locations of a part's body).
+■ The ATTACHMENT DISTANCE: Distance between the corresponding TOOL HANDLER  and the
+nearest part handle at which the part in question is considered to be within grasping capability of
+the tool.
+Finally, in the TRANSITION TIMES section of the DEVICE CONFIGURATION panel, you may customize
+the in-between states transition durations for the selected behavior.
+7.5.8.4 - Grasping and releasing a part: When does it occur ? M0004028.1
+To grasp a part, the following conditions need to be met:
+■ One of the part's handles is within the specified ATTACHMENT DISTANCE of a TOOL HANDLER,
+■ The GRASP STATE of the corresponding TOOL HANDLER is triggered through the specified out‐
+put signal, in the specified status.
+If these conditions are met, the part will be grasped accordingly to the specified GRASP STATE
+(MAGNETIC or AS IS).
+To release a part, simply trigger a different state on the TOOL HANDLER currently holding it. If no 3D
+object is present below the part (along the cell Z-axis, in the negative direction), the part will be re‐
+leased and remain in its current position. Otherwise, the part drops until it collides with the 3D object
+below it (along the cell Z-axis, in the negative direction).
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 37/76
+
+===== PAGE 38 =====
+You may also access a more comprehensive view of the current status of each tool by opening
+the HOME\3D VIEW\SIMULATION STATUS panel. This panel displays in real time and for each handler
+the following information:
+■ The grasp status,
+■ The current status of the handler's behavior,
+■ The current status of the trigger output signal,
+■ The current status of the feedback input signal.
+7.5.9 - CHECKING THE PAYLOAD M0004029.1
+Once the tools, parts, and additional loads are all in place on the robot arm, SRS can automatically
+calculate the moments of inertia on joints 5 and 6 (anthropomorphic robots) or joint 4 (SCARA).
+The first step is to correctly define the mass or material density for each element attached to the robot
+(tools, parts, additional loads). If the element in question is an assembly, you can perform this opera‐
+tion of each individual child of the assembly, or on the whole assembly at once. This is done in
+the PROPERTIES panel, by setting either the density attribute or the mass attribute.
+The second step is to attach the tools and parts to the robot, and to link the additional loads to the
+corresponding robot joints (see chapter 7.1.1.4 ).
+The third step is to perform the actual calculations. To do so, right-click on the robot arm in
+the 3D VIEW and select the CHECK PAYLOAD command 
+ . This opens the PAYLOAD panel, which
+displays a summary of the inertia.
+For anthropomorphic robots, this summary shows the moments of inertia on joints 5 and 6. The value
+for joint 5 is calculated based on the current position of joint 6. For the worst case joint 5 value, it is
+given in the lower section of the panel, next to the graph.
+For SCARA robots, only the inertia on joint 4 is calculated.
+You may also view the detailed calculation for each tool, part, additional load.
+The fourth and optional last step is to transfer this PAYLOAD information to the robot to improve its
+dynamic behavior. This can be done in 2 possible ways:
+■ Update the PAYLOAD configuration file on the controller. This is usually done for the elements that
+remain on the robot arm at all times (fixed tools, additional loads). To do so, click on
+the SEND button 
+  at the top of the PAYLOAD panel, then select the load elements that need to
+be taken into account. The parameters will be injected into the emulated controller, and sent to the
+corresponding controller if the IP address is specified in its properties and if
+the UPDATE TARGET checkbox is activated at the bottom of the panel.
+■ Generate the VAL 3 code to programmatically apply the PAYLOAD parameters on the fly. This is
+usually done for the elements that are not always attached to the robot arm (tools with tool chang‐
+ers, parts). To do so, click on the GENERATE VAL3 button 
+  at the top of the PAYLOAD panel,
+specify from where to where the calculations needs to be done, and select one of two options:
+- CREATE A VAL3 FUNCTION TO SET PAYLOAD: Select in the pulldown list the application into
+which this function needs to be created, customize the name of the program, and
+press FINISH,
+- COPY VAL3 CODE INTO AN EXISTING FUNCTION: Opens a viewer that contains
+the VAL 3 code that you can then copy and paste into a program of your choice.
+Note: If the quality of the 3D model is too poor (too many missing or incorrectly oriented surfaces), the
+payload calculation will not be performed. In this case, an error message is displayed in
+the PAYLOAD panel.
+7 - WORKING WITH THE 3D
+38/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 39 =====
+7.5.10 - CONNECTING I/OS BETWEEN CONTROLLERS M0004030.1
+It is possible to connect output signals of one given controller to input signals of another, and vice ver‐
+sa. The purpose of this mechanism is to reproduce in the virtual world the IO wiring of the real cell as
+closely as possible.
+To do so, right-click on the cell name in the CELL EXPLORER, and select CELL I/O LINKER 
+ .
+Click on CELL I/O LINKER\ADD LINK 
+  to create a new link. You may also open a PHYSICAL IOss
+panel for one of the controllers (see chapter 8.8.1 ) and drag and drop signals from this panel into the
+top section of the CELL I/O LINKER.
+Once a link is created, you can insert I/Os into it by either double-clicking on the corresponding field
+(input on the right, output on the left) and select the signal, or drag and drop it from
+a PHYSICAL IOs panel 
+ .
+It is also possible to remove a link or remove all links by using the corresponding command.
+7.5.11 - RECORDING MOVIES M0004031.1
+To record a movie, activate the SIMULATION\RECORD A MOVIE command 
+ . This opens a win‐
+dow in which you will specify:
+■ The name of the video file,
+■ The path where the video file will be saved,
+■ The frame rate (fps),
+■ The CODEC (1) .
+If you check the corresponding box, Windows Explorer will automatically open at the specified path at
+the end of the recording.
+When finished, press OK to start recording. From this point on, everything that happens in the
+3D SCENE will be recorded into the video, and a contextual ribbon named MOVIE TOOLS will open.
+While recording, you may press MOVIE TOOLS\PAUSE RECORD OF MOVIE 
+  to pause the record‐
+ing.
+Please note that the resolution of the video is directly linked to the size of the 3D VIEW panel, so the
+larger this panel is, the higher the resources consumption will be to perform the recording (An error
+message will inform you if the frames can no longer be recorded fast enough). To perform recordings
+on lower end computers, it is recommended to either reduce the frame rate, or reduce the size of
+the 3D VIEW panel.
+To stop recording, press MOVIE TOOLS\STOP RECORD OF MOVIE  
+ . The movie file is saved at
+this time.
+(1) Although it is not installed automatically for legal reasons, a very efficient CODEC (XVID) is present
+on the SRS installation DVD-ROM. It is located in the Third Party Software\Xvid\subfolder.
+We strongly recommend that you install and use it ( SRS needs to be restarted after installation).
+Within the recorder configuration, this CODEC is identified as "Xvid MPEG-4 Codec".
+7 - WORKING WITH THE 3D
+SRS © Stäubli 2019 – D.280.959.04-B 39/76
+
+===== PAGE 40 =====
+40/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 41 =====
+8 - VAL 3 APPLICATION MANAGEMENT .
+8.1 - IMPORTING APPLICATIONS INTO A CONTROLLER M0004032.1
+To import an application, right-click on a local controller and select
+the IMPORT VAL3 APPLICATIONS command.
+It is possible to import application coming:
+■ From a cell: Select the ".cell" file containing the applications that you want to import and follow the
+instructions in the wizard.
+■ From a directory: Select a directory that contains at least one controller.
+The import sequence starts. If the applications require a conversion, the import software does it auto‐
+matically.
+The converted applications are placed in the cell directory. If any errors occur, they are displayed at
+the end of the conversion procedure.
+8.2 - CREATING VAL 3 APPLICATIONS M0003952.1
+An application is created on the basis of a template. Templates are applications that are stored in a
+specific directory (USR\TEMPLATES) in the controller.
+To create an application, select a controller and execute the VAL 3\NEW APPLICATION menu.
+Select a name for the application, a location, then select a template from the list and validate your
+choice by clicking on OK.
+An application name must not contain more than 15 characters, and it must start with a letter or an
+underlined space (a-z, A-Z, _).
+The new application is created in the USR\USRAPP directory of the current controller.
+8.3 - EDITING DATA M0003953.1
+From the browser tree, select the DATA tab (CTRL+W, D). Then double-click on the desired data.
+For the frames, tools and points, the GEOMETRY tab can be used to select the data. The
+icons in the browser tree are shown with a small padlock if the variable is private.
+8.3.1 - CREATING A VARIABLE M0003954.1
+Click on the pop-up menu of the data tree view or press shortcut CTRL+N, D.
+Filling the form:
+■ TYPES:
+- The STÄUBLI types depend on the controller's SRC version. For example, SCARA types didn't
+exist before s5.2.
+- The User types are created when adding a type in application (see editing library and type).
+User types are only available for controllers with SRC s7.0 version or later.
+■ CONTAINER: Select the way the variable will be stored.
+- ARRAY: Indexed with numbers (3 dimensions max.).
+- COLLECTION: Indexed with a string.
+■ NAME: The name of the variable. Maximum 15 characters and must start with a letter or an under‐
+score character (a-z, A-Z, _).
+■ ACCESS: Check the box to make the variable public.
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 41/76
+
+===== PAGE 42 =====
+■ SIZES: Enter the sizes of each dimension separated with a comma. The maximum number of di‐
+mensions is 3. Keep in mind that for cells in versions earlier than s7.0, only one dimension is al‐
+lowed for arrays.
+To change the size of a dimension of an array, use the properties tool window.
+See also: VAL 3 documentation for more information on Collections, Multidimensional arrays, and user
+data types.
+To delete a data, select it in the browser tree, right click to display the pop-up menu, and se‐
+lect DELETE or press the del key.
+To copy a data item from one project to another, it is necessary to use the clip‐
+board (CTRL+C, CTRL+V) and not the drag-and-drop tool.
+The mouse can be used to drag and drop geometrical data of point, frame or tool type in the geometri‐
+cal tree view and change the father/child relation.
+See also: VAL 3 reference manual (VAL 3 language element).
+8.3.2 - EDITING VALUES M0003955.1
+A variable can contain one or more values.
+It is possible to add and insert values using the commands located in the contextual ribbon.
+To select several values, use the mouse click + shift combination.
+It's possible to copy/paste values in the datagrid. To do so, select values with the mouse,
+press CTRL+C, select the destination cell and press CTRL+V.
+It is also possible to reset the content of one or more cells by proceeding as follow:
+■ Select the cell(s).
+■ Right click on the selection.
+■ Select DELETE  
+  in the contextual menu.
+To change the size of a dimension of an array, use the properties tool window. It is not possible to
+change the number of dimensions of an array.
+8.4 - EDITING PROGRAMS M0004041.1
+To access the list of programs, select the CELL EXPLORER tab and navigate to the tree node corre‐
+sponding to the program to edit (CELL EXPLORER\CONTROLLER\APPLICATION\PROGRAM).
+The code is entered via the central editing area. The main features are syntax highlighting, automatic
+indentation, auto-completion (via the space shortcut) and online help (space on the keyboard). It is
+possible to edit several programs at the same time. A tab bar shows all the currently open programs
+for easier navigation.
+To create a new program, execute the NEW PROGRAM pop-up menu (right click) on the program tree
+view (CTRL+N, P).
+Expand the PROGRAM node to see the parameters and local variables of the program. Add a parame‐
+ter by using the pop-up menu on the PARAMETERS node or (CTRL+N, X) and then fill in the form.
+The drag-and-drop tool can be used to change the order of the parameters. Add a local variable by
+using the pop-up menu on the LOCALS node or (CTRL+N, L) and then fill in the form. See chapters
+below for more details.
+It is possible to zoom in (up to 3x) and out in the body of a program by holding the CTRL key while
+spinning the mouse wheel.
+8 - VAL 3 application management
+42/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 43 =====
+8.4.1 - CREATE A PARAMETER M0003956.1
+Click on the pop-up menu of the PROGRAM node in the program tree view or press short‐
+cut (CTRL+N, X). The following form appears.
+Filling the form:
+■ TYPES:
+- The STÄUBLI types depend on the controller's SRC version. For example, SCARA types didn't
+exist before s5.2.
+- The User types are created when adding a type in application (see editing library and type).
+User types are only available for cells in s7.0 version or later.
+■ CONTAINER: Select the way the parameter will be passed.
+- ELEMENT: Passing only on element of an array or a collection. Check the box for passing the
+parameter by reference.
+- ARRAY: Passing the entire array as a parameter. Arrays are always passed by reference.
+Choose the array numbers of dimensions in list box. Note that for cell version lower
+than s7.0 the dimensions choice is greyed because only single dimensional arrays existed.
+- COLLECTION: Passing an entire collection as a parameter. Pay attention that collections are
+not available for version lower than s7.0. Collections are always passed by reference.
+■ NAME: The name of the data. Maximum 15 characters and must start with a letter or an under‐
+score character (a-z, A-Z, _).
+8.4.2 - CREATE A LOCAL VARIABLE M0003957.1
+Click on the pop-up menu of the program node in the PROGRAM tab or press short cut (CTRL+N, L).
+Filling the form:
+■ TYPES:
+- The STÄUBLI types depend on the controller's SRC version. For example, SCARA types didn't
+exist before s5.2.
+- The User types are created when adding a type in application (see editing library and type).
+User types are only available for cells in s7.0 version or later.
+■ CONTAINER: Select the way the variable will be stored.
+- ARRAY: Creates a local array (indexed with numbers). Enter the sizes of each dimension sepa‐
+rated with a comma. The maximum number of dimensions is 3. Keep in mind that for cells in
+versions earlier than s7.0, only one dimension is allowed for arrays.
+- COLLECTION: Creates a local collection (indexed with string). Note that collections are not
+available for versions earlier than s7.0.
+■ NAME: The name of the data. Maximum 15 characters and must start with a letter or an under‐
+score character (a-z, A-Z, _).
+See also: VAL 3 documentation for more information on Collections, Multidimensional arrays, and user
+data types.
+8.4.3 - DISPLAY CALL TREE M0004035.1
+The CALL TREE of a specific program can be displayed by right clicking on it and selecting
+the SHOW CALL TREE command 
+ .
+The CALL TREE panel opens up and the selected program appears as the top node of the tree.
+Expanding a node shows you the programs called by the parent node, either through a CALL instruc‐
+tion, or a TASKCREATE.
+This operation can be repeated to the very bottom of the branch, meaning until you reach a program
+that calls no other.
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 43/76
+
+===== PAGE 44 =====
+8.5 - EDITING LIBRARIES AND USER'S TYPES M0003958.1
+To access the list of libraries and user types used by an application, select
+the CELL EXPLORER tab (CTRL+W, C) and open the REFERENCES node (CELL EXPLORER\CON‐
+TROLLER\APPLICATION\REFERENCES).
+Each LIBRARY node shows a list of its public data and programs. The hierarchy, Father/Child of geo‐
+metrical data (frames, tools, points), is not shown. Data are categorized by type. The tree view con‐
+tains one node for each user defined type. This node doesn't contain any information but when it is
+selected the properties windows reflects the application path that defined this user type.
+To add a library or a user defined type, use the new command in the corresponding pop-up menu of
+the libraries tree view or press CTRL+N, R for a library and CTRL+N, T for a type.
+To remove a library or a user's type, select it and press del key or use the Del menu from the pop-up
+menu (right click).
+8.6 - USERPAGE DESIGNER (CS9 ONLY) M0004862.1
+The TX2-CS9 range of robots comes with the SP2 teach pendant, which is equipped with graphical
+touch-screen.
+As with the previous TX-CS8C range, users can define their own user interfaces to be displayed on the
+screen of the pendant.
+In addition, some (or all) of the user interface pages of an application can be defined in different for‐
+mats, in order to be used on other types of displays (such as, but not limited to tablets, smartphones,
+PC, etc…).
+SRS integrates a new ergonomic and intuitive graphical designer aimed at easily creating HMI pages
+within the user’s VAL 3 application.
+Creating an HMI for a VAL 3 application consists of five major steps:
+1) Creating the page with the desired format.
+2) Creating, positioning, and dimensioning the interface elements (widgets), such as pulldown lists,
+editable fields, labels, etc….
+3) Binding some of the properties of these widgets to global variables of the  VAL 3 application to cre‐
+ate an intrinsic link between the HMI and the current detailed status of the robot operations, repre‐
+sented by these global variables.
+4) Defining callback VAL 3 programs on widget-related events.
+5) Managing the HMI at runtime: displaying specific pages or controlling/changing bindings from
+the VAL 3 application can be done via dedicated language instructions.
+8.6.1 - CREATING A NEW PAGE M0004863.1
+From the CELL EXPLORER panel 
+ , expand the node corresponding to the application you want to
+add an HMI into, and right-click on the  INTERFACE section. Then se‐
+lect ADD 
+  and NEW USER PAGE 
+  from the contextual menu. This will open a page creation win‐
+dow.
+Note: From the ADD submenu, it is also possible to create a NEW FOLDER 
+  to better organize the
+HMI pages within the VAL 3 application’s structure, or to import an  EXISTING IMAGE 
+  into
+the VAL 3 application’s HMI, meant to be displayed on one of the HMI pages.
+The second step is to choose for two different format options in the page creation window:
+■ SP2 display in portrait orientation.
+■ Custom format for other display:
+- In this case, the width and height of the page to create need to be specified in pixels, in the
+corresponding editable fields.
+8 - VAL 3 application management
+44/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 45 =====
+Once the format is specified, click on OK. Two panels open up:
+■ The first one contains the newly created blank page.
+■ The second one, named TOOLBOX 
+ , contains all the supported widgets.
+A specific, contextual USERPAGE tab containing page edition tools also opens up at the top of the
+window, in the ribbon.
+The page edition panel includes controls on the left-hand side to:
+■ Move around the page (the scrollbars can also be used to fulfill this purpose):
+ 
+I0004393
+ 
+■ Zoom in and out within the page:
+ 
+I0004394
+ 
+This panel also includes tabs (bottom left) offering different views of the page:
+■ DESIGNER: Graphical placement and dimensioning of the interface elements.
+■ PREVIEW: Display of what the page will look like on the real display.
+■ HTML: Source code of the page.
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 45/76
+
+===== PAGE 46 =====
+8.6.2 - CREATING WIDGETS M0004864.1
+To create a new widget, simply select it from the TOOLBOX panel 
+ , and either drag it into the
+page edition panel, or simply click into it to make it appear.
+After appearing into the page, the widget can be:
+■ Repositioned: simple click and drag.
+■ Resized: drag a corner or a side to adjust the corresponding dimensions; alternatively enter the di‐
+mensions in the LAYOUT section of the PROPERTIES panel 
+ .
+■ Edited for contents: double-click the widget:
+- In the case of a simple widget, the edition is done directly within the widget (example: changing
+the text of a button).
+- In the case of a more complex widget, a setting window specific to the widget opens up (exam‐
+ple: double-clicking an image widget will open up an image selection window).
+For easier organization of the widgets on the page, the contextual  USERPAGE tab in the ribbon pro‐
+vides several sets of tools:
+■ Alignment: can be used to align the widgets with one another:
+ 
+I0004396
+ 
+■ Arrange: can be used to distribute widgets evenly in a specific direction, and to control the relative
+depth of the widgets:
+ 
+I0004397
+ 
+■ Settings: can be used to toggle and set the snaplines (auto-snap between widgets) and snapgrid
+(auto-snap widgets to a grid):
+ 
+I0004398
+ 
+■ Views: can be used to open up:
+- The TOOLBOX panel 
+  : see details above.
+- The DOCUMENT OUTLINE panel 
+  : shows an organizational tree view of the widgets, as
+well as a full list of bindings. The incorrect bindings ( VAL 3 variable deleted or renamed, widget
+ID changed,…) are highlighted in red.
+8.6.3 - BINDING WIDGET PARAMETERS TO VAL 3 GLOBAL VARIABLES M0004865.1
+Some properties of the interface widgets can be bound to global variables of the VAL 3 application.
+This binding will be unidirectional (from the VAL 3 application variable to the HMI) for widget properties
+that cannot be edited from within the HMI page, such as the color of a button or text.
+The binding can also be bidirectional (from the VAL 3  application variable to the HMI, and vice-versa)
+for widget properties that can be changed from within the HMI page, such as a text input, or a pull‐
+down list.
+8 - VAL 3 application management
+46/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 47 =====
+To bind a widget property, select it and open the PROPERTIES panel (F4). This panel presents all the
+editable properties of the selected widget, among which the ones that can be bound to a  VAL 3 global
+variable are accompanied by a link icon 
+ . Click this icon to open up the BINDING EDITOR window.
+At the bottom of this window, a text in a red frame indicates which type(s) of  VAL 3 global variable can
+be bound to the previously selected widget property. A variable element of one of the listed types
+must be selected via double-click in the tree view at the left of the BINDING EDITOR.
+Once the variable is selected, the binding mode must be set via the pulldown list located at the bottom
+of the right section of the BINDING EDITOR. There are up to five binding modes:
+■ Read: the widget property is updated constantly based on the value of the VAL 3 variable.
+■ Write: the VAL 3 variable is updated constantly based on the value of the widget property.
+■ Read Once: the widget property is updated once at every page load based on the value of
+the VAL 3 variable.
+■ Read Once then Write:
+- The widget property is updated once at every page load based on the value of the  VAL 3 varia‐
+ble.
+- The VAL 3 variable is then updated constantly based on the value of the widget property.
+■ Read or Write:
+- The widget property is updated constantly based on the value of the VAL 3 variable.
+- The VAL 3 variable is updated constantly based on the value of the widget property.
+At the top of the right section of the BINDING EDITOR, two more pieces of information are also dis‐
+played:
+■ CONTROL ID: Unique identifier of the widget.
+■ CONTROL PROPERTY: HTML name of the property being bound.
+8.6.4 - DEFINING EVENT-BASED CALLBACKS M0004866.1
+To setup an event-based callback on a widget, first select the widget in the page edition panel, and
+open the PROPERTIES panel (F4).
+Scroll the PROPERTIES panel to the EVENTS section, three types of events are available:
+■ MouseDown: this event is fired when the mouse button or a finger is pressed down onto the widg‐
+et.
+■ MouseUp: this event is fired when the mouse button or a finger is released onto the widget.
+■ Click: this event is fired when the corresponding widget is clicked or tapped on (MouseDown fol‐
+lowed by MouseUp).
+For each event, a callback program can be selected from the pulldown list by clicking the correspond‐
+ing expand button 
+ : Note that:
+■ The programs in the list all belong to the same VAL 3 application as the HMI itself.
+■ The programs in the list are only the ones from this VAL 3 application that have no parameters.
+8.6.5 - MANAGING THE HMI AT RUNTIME M0004867.1
+First, the PREVIEW tab in the interface panel displays a preview of the end result, without having to
+run the application. This allows, for example, verifying that the contents of a  CONTAINER widget func‐
+tion and display properly.
+On a real or emulated SP2 display, to bring up a specific page at runtime, the following  VAL 3 lan‐
+guage instruction must be called from within a program of the running VAL 3 application:
+■ num userPage(string sPageName).
+To bind a VAL 3 variable to a property of a graphical widget programmatically, the follow‐
+ing VAL 3 language instruction must be called from within a program of the running VAL 3 application:
+■ void userPageBind (string sPageName, string sGraphicalObjectId, string sGraphicalObjectProper‐
+ty, varType& varToBind, num nSize, string sBindingDirection, num nRefresh).
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 47/76
+
+===== PAGE 48 =====
+varType can be any of the following (depending on the widget property to bind the variable to):
+■ num
+■ string
+■ bool
+■ dio
+■ aio
+To unbind a VAL 3 variable from a property of a graphical widget programmatically, the follow‐
+ing VAL 3 language instruction must be called from within a program of the running VAL 3 application:
+bool userPageUnbind(string sPage, string sGraphicalObjectId, string sGraphicalObjectAttrib).
+Finally, anytime a mouse or tap event is fired on a widget, the corresponding VAL 3 program will be
+spawned in a system-created parallel task.
+For more details on HMI-related VAL 3 instructions, please refer to the VAL 3 Reference Manual.
+8.7 - ZIP LIBRARIES AND RUNTIME LICENSES M0004039.1
+To generate a password for a zipped library, use the Tool "EncryptTools.exe" located in the SRS di‐
+rectory. Enter the password that has been used to zip the library, press the Generate button and use
+the given password to be able to load zipped library.
+To generate a runtime license for a controller, select the  TOOL\GENERATE RUNTIME LICENSE  tab.
+Enter the license name, the mac-address of the controller (can be found in
+the CONTROL PANEL\NETWORK PROPERTIES), press generate and use the given license to install it
+on the controller (can be done through the CONTROLLER\OPTION MANAGER OF SRS).
+The DEVELOPPER PACK license must be present on the USB dongle to enable these two features.
+See also: VAL 3 reference manual (Libraries and User's type).
+8.8 - I/O MANAGEMENT IN VAL 3 APPLICATION .
+8.8.1 - IMPORTING PHYSICAL IOS M0003960.1
+To see the PHYSICAL IOs available on a controller, select a controller in the cell tree view and click
+on HOME\PHYSICAL I/Os command (SRS uses the parameters of the current controller to display the
+list of the available I/Os. To add or remove boards, right click on a controller and select
+the PROPERTIES menu).
+It is possible to import physical I/Os into an application by using the I/Os menu in the IMPORT contex‐
+tual ribbon. This is used to automatically declare VAL 3 variables linked to the PHYSICAL IOs selected.
+To do so:
+■ Select all the I/Os that you want to import.
+■ Click on the IMPORT button.
+■ Select an option for the name of the VAL 3 variables.
+- Automatic generation with the VAL 3 naming rules (Default option).
+- Using the previous library format (compatibility with 6.x versions). Generates the same VAL vari‐
+able name as those used in 6.x versions and earlier (In the  I/O library). This option can be used
+to re-generate an I/O library under the previous format and it can be used to upgrade an appli‐
+cation more easily.
+8 - VAL 3 application management
+48/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 49 =====
+8.9 - CHECKING SYNTAX M0003961.1
+This tool checks the syntax for each application and displays errors in the message window. During
+the checking sequence, the libraries are also checked, even if they have not been loaded in SRS.
+To check the syntax for an application, select the CHECK SYNTAX option in the pop-up menu for the
+application node in the browser tree or press SHIFT+F6. To check all the applications loaded in  SRS,
+press the F6 key.
+If errors are displayed, you can go to the program by double-clicking on it. To move from one error to
+another, press the CTRL+F8 or SHIFT+CTRL+F8 keys.
+If an error is found in a data item,  SRS moves to the data item, but not to the data value that has gen‐
+erated the error.
+The VAL 3 version used to check the syntax is the one that corresponds to the current controller (See
+the chapter on: VAL 3 language).
+Even though it is integrated in the SRS environment the syntax checking tool is standalone. Seeing
+that it works on the application files, for safety reasons (to avoid file corruption) SRS saves the appli‐
+cation before checking it.
+See also: VAL 3 language.
+8.10 - DEBUGGING A VAL 3 APPLICATION M0003962.1
+Only one debugging session can be carried out at a time.
+When a debugger is connected to a controller, a message is displayed on the teach pendant.
+The controller debugger takes priority:
+■ If a debugging session is active on the teach pendant, SRS cannot log on.
+■ If a debugging session is active in SRS, and if a user goes to the debugging page of the teach
+pendant, SRS is disconnected automatically.
+8.10.1 - DEBUG ON COMMAND M0003963.1
+This command allows debugging an application on a controller. A controller is either a real controller
+or an emulator.
+Before attaching to a real controller, it is necessary to synchronize the code between the current cell
+and the controller.
+■ Save the application on the controller.
+■ Upload the application to the controller using TRANSFER MANAGER.
+8.10.2 - RUN AND DEBUG APPLICATION COMMAND M0003964.1
+This command allows to run and debug an application locally.
+This command only works on controllers with a version greater than or equal to SRC s7.6.
+SRS automatically saves the application, loads it in an emulator, runs the application and attaches the
+debugger to the emulator.
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 49/76
+
+===== PAGE 50 =====
+8.10.3 - DEBUGGER BEHAVIOUR M0003965.1
+On connection to a controller:
+■ SRS switches to debugger mode: The edition menus are greyed out and the window positions are
+updated.
+■ The debugger automatically displays the task list. If no applications are running, the task list is
+empty and a 'No application started' message is displayed for the user.
+■ If a task is in pause status, the debugger displays its execution context and updates the call stack,
+the list of local variables, the list of parameters and the execution pointer.
+If several tasks are in pause status at the time of connection, the context of the first task is
+displayed.
+STOP:
+■ Cuts off the debugging session. SRS switches to editing mode and restores the window positions.
+All the panels described in the following chapters can be opened from the  DEBUG tab in the
+main ribbon.
+8.10.3.1 - TASK panel M0003966.1
+Display the list of the currently running tasks. Double-click on a task in pause status or press the 'En‐
+ter' key to update the call stack, the list of local variables, the list of parameters and the execution
+pointer for the selected task.
+8.10.3.2 - Control of execution M0003967.1
+The execution control commands apply to the task selected in the task list.
+■ SUSPEND TASK 
+ : Suspends the selected task. The call stack, the list of local variables, the list
+of parameters and the execution pointer are updated.
+■ RESUME TASK 
+ : Resumes execution as from the current pointer.
+■ KILL TASK 
+ : Deletes the selected task after confirmation by the user.
+Step by step code execution commands:
+■ STEP OVER 
+ : Executes the instruction without exiting the current program. It is used to execute
+a call without entering the called program (which is then executed in continuous mode).
+■ STEP INTO 
+ : On a call, enters the called program execute its code in step-by-step mode.
+■ STEP OUT OF 
+ : Resumes execution of the current program in continuous mode. When returning
+to the calling program, execution mode goes back to step by step.
+Before executing a step, the debugger compares the current local line with the current line on the con‐
+troller. If the two lines are not identical, the debugging sequence stops and cell synchronization is nec‐
+essary.
+Defining the next instruction:
+It is possible to move the execution pointer in the current program.
+To do so:
+■ Click on the execution pointer and move it to the next instruction.
+■ Right-click on a line of code and select the DEFINE THE NEXT INSTRUCTION pop-up menu.
+8 - VAL 3 application management
+50/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 51 =====
+8.10.3.3 - CALL STACK panel M0003968.1
+The CALL STACK window displays the program call order.
+■ For each program call, a new context is created and added to the stack.
+■ Each context memorizes the values at the time of the call (application, program name, line number,
+local variables, parameters...).
+■ The current execution pointer (
+  symbolized by a yellow arrow in the code) is in the latest context
+(top of the stack).
+■ It is possible to go through the call stack and view the corresponding context by double-clicking
+on an element in the stack or pressing the enter key. The execution pointer at the time of the call is
+symbolized by a green arrow 
+ .
+8.10.3.4 - LOCALS AND PARAMETERS / WATCH panels M0003969.1
+LOCALS AND PARAMETERS panel: Automatically displays the values (parameters + local variables)
+linked to the current execution context. It is not possible to add variables to the window or remove
+variables from it.
+WATCH panel: This is used to view the values of the global variables for an application.
+To add a watch item:
+■ In the DATA tree view, right-click on a VAL 3 data and then select the ADD WATCH menu.
+■ In a VAL 3 program, right-click on the name of a global data and select the ADD WATCH menu.
+Online variable WATCH: hovering the mouse over a variable during a step by step execution session
+displays its value in a tooltip.
+Online expression WATCH: selecting an expression and hovering the mouse over it displays its calcu‐
+lated value in a tooltip.
+An expression can also be added in the WATCH panel by selecting it, right-clicking it, and selecting
+the ADD EXPRESSION WATCH command in the contextual menu. Note: In the WATCH panel, expres‐
+sions are not refreshed automatically.
+To manually refresh an expression, click the REFRESH WATCHES 
+  button next to its value, or the
+one at the top of the WATCH panel.
+Note: Expression watches do not work on some expressions, such as:
+■ VAL 3 instructions that involve the robots (such as moves, enable power, etc…).
+■ VAL 3 instructions that involve file access (such as loading or saving libraries).
+■ Expression returning an obvious result (such as simple variable assignments).
+The value of the watches is refreshed each time a task switches to pause status (at a breakpoint, in
+step by step mode, etc.) or at the user's initiative by clicking on the REFRESH WATCHES command
+.
+It is possible to refresh the watch items automatically (except expressions, once per second) by click‐
+ing on the AUTO REFRESH WATCHES command 
+ .
+The contents of the WATCH panel are saved at the end of each debug session.
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 51/76
+
+===== PAGE 52 =====
+Modifying a variable:
+It is possible to change the value of a local variable or a watch item by clicking in the 'value' column.
+I0001275
+Figure 8.1
+■ The new value is evaluated by the VAL 3 interpreter before being assigned, to prevent
+use of any invalid content and authorize entry of complex VAL 3 instructions directly in
+the 'value' column.
+■ During modification of an Input/Output, a truncated view of the 'CONTROL PANEL' is dis‐
+played (For more detailed information, see the 'Input/Output control panel' paragraph).
+8.10.3.5 - BREAKPOINTS panel M0003970.1
+Adding / Deleting:
+To add or delete a breakpoint, either:
+■ Click in the left-hand column in a VAL 3 program.
+I0004409
+Figure 8.2
+■ Right click on a code line and click on the TOOGLE BREAKPOINT contextual menu.
+It is possible to add and delete breakpoints without being connected to a controller.
+Each time the VAL 3 debugger connects up to a controller it automatically synchronizes the break‐
+points (in both directions).
+Each time the VAL 3 debugger disconnects from a controller it automatically deletes all the controller
+breakpoints.
+A breakpoint is not linked to a particular task (i.e. a breakpoint suspends all the tasks that execute the
+instruction on which it is placed).
+Go to source code:
+It is possible to return to the code line on which the breakpoint has been placed, using the command
+.
+8.10.3.6 - Modifying a line while debugging M0003971.1
+Starting edition:
+Select a code line and then use the EDIT LINE 
+  command (or press the enter key).
+An icon shows that you are in editing mode 
+ .
+It is then possible to make modifications, copy and paste text, use completion, etc.
+ 
+I0004412
+ 
+8 - VAL 3 application management
+52/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 53 =====
+Validating a modification:
+Press the enter key to validate a modification. The VAL 3 interpreter then validates the entered text.
+■ If the text is correct: It is taken into account.
+■ If the text is invalid: An error message is displayed to the user and the original code line is restored.
+Cancelling a modification:
+It is possible to cancel the current modification and restore the original line by pressing the escape
+key.
+A line can only be modified in the context of the execution pointer 
+ .
+Only one line can be edited at a time.
+No new lines can be added.
+8.10.3.7 - COMMAND LINE panel M0003972.1
+To display the window, click on the DEBUG\COMMAND LINE  command 
+ . If a debug session is ac‐
+tive, it is possible to send VAL 3 commands.
+The command history is stored and the commands can be recalled using the up/down keys on the
+keyboard.
+8.10.3.8 - Input/Output control panel M0003973.1
+■ The control panel view is refreshed automatically.
+■ An input/output can only be locked via the control panel.
+■ Locked I/Os are in bold font with a blue background.
+Input
+I0004414
+Figure 8.3
+■ VAL 3 can read an input value.
+■ VAL 3 can write in a simulated input if it is not locked.
+■ To change the value of a physical input (not simulated) input, it is necessary to lock it beforehand.
+■ When an input is unlocked, it takes on its current physical value again.
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 53/76
+
+===== PAGE 54 =====
+Output
+I0004415
+Figure 8.4
+■ VAL 3 can read an output value.
+■ VAL 3 can write in an output if it is not locked.
+■ VAL 3 writing sequence in a locked output is ignored.
+8.11 - APPLICATION PROPERTIES M0003988.1
+To display or modify the properties of a VAL 3 application, select it and display the
+tool HOME\GENERAL\PROPERTIES or press F4.
+For further information on the properties of an application, see the VAL 3 help section.
+8.12 - PRINTING A VAL 3 APPLICATION M0003986.1
+To print an application, select it in the browser tree, and then select the print command (CTRL+P) from
+the VAL 3 ribbon.
+For printing only a single program, put the mouse cursor in the code and then select the print com‐
+mand (CTRL+P) from the VAL 3 ribbon.
+8 - VAL 3 application management
+54/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 55 =====
+8.13 - FIND AND REPLACE M0003974.1
+FIND IN FILES / REPLACE IN FILES (SHIFT+CTRL+F), (SHIFT+CTRL+H):
+Search a text in the context of the cell. In a VAL 3 application the text is searched in:
+■ Global data name.
+■ Global data string value.
+■ Program name.
+■ Program description.
+■ Program source code.
+■ Program parameters name.
+■ Program local data name.
+■ Libraries alias.
+The search engine can look in:
+■ Current program: The current program is the program tab page that is selected. In this case the
+engine searches in the program name, the description, the source code, the parameters name and
+the local variables name.
+■ All opened programs: Search in all opened program tab pages.
+■ Current application: Current application is the application that is in bold in the tree view (Data, pro‐
+gram or library tree view).
+■ Current application and libraries: Search in the current application and all the libraries recursively.
+■ All opened applications: Search in all applications that have been loaded in the VAL 3 Studio.
+■ All opened applications and libraries: Search in all applications that have been loaded in
+the VAL 3 Studio and their libraries recursively.
+■ All applications of the controller: Search in all the applications that are located in the
+'USR\USRAPP' folder of the cell folder.
+The engine works in same way for the REPLACES IN FILES  (SHIFT+CTRL+H).
+QUICK FIND / REPLACE (CTRL+F), (CTRL+H):
+The quick search engine searches text only in the source code of the current program.
+8 - VAL 3 application management
+SRS © Stäubli 2019 – D.280.959.04-B 55/76
+
+===== PAGE 56 =====
+56/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 57 =====
+9 - SAFETY CONFIGURATION (CS9 ONLY) M0004869.1
+To open the SAFETY CONFIGURATION panel, two possibilities:
+■ First possibility:
+- Expand the controller 
+  and robot 
+  nodes in the GEOMETRY Tree view 
+ .
+- Right-click on the SAFETY node 
+  and select CONFIG 
+ .
+■ Second possibility:
+- Click the SAFETY tab in the main ribbon.
+- Click the CONFIG pulldown button 
+  (far left).
+- Select the controller in the pulldown list.
+In both cases, the dockable SAFETY configuration panel opens up. This panel contains three main
+sections:
+■ The CONFIGURATION WIZARD.
+■ The ERRORS/WARNINGS messages.
+■ The SAFETY RESOURCES summary.
+Note: This document will not provide detailed information about all of the SAFETY-related pa‐
+rameters and functionalities. Please refer to the safety manual for more details on these fea‐
+tures.
+9.1 - CONFIGURATION WIZARD M0004870.1
+The CONFIGURATION WIZARD panel displays the various steps in the SAFETY configuration in num‐
+bered tabs, from the left to the right of the wizard. The total number of steps depends on the selected
+version of SAFETY.
+The SAFETY version must first be selected in the  VERSIONS tab. To select a version, click on it in the
+version list, and click the APPLY button. At that moment, the number of steps in
+the CONFIGURATION WIZARD will automatically adapt, varying from 3 to 8.
+In the various steps of the wizard, some configurable SAFETY items are followed by a link icon 
+ .
+This means that the corresponding item can also be configured differently, in another step of the wiz‐
+ard. Clicking the link icon 
+  will switch the view to the step in question.
+Details on the various steps:
+1) ELECTRICAL INTERFACES: This tab is used to configure the behavior of the SAFE I/Os of
+the CS9 controller (pulse check or not, this affects the selection of the basic SAFEPMT file).
+2) WORKING MODE: This tab is used to configure the type of WORKING MODE selection, and an
+optional SAFE output for WORKING MODE feedback.
+3) RESTART CONTROL: This tab is used to configure the type of RESTART, as well as the rela‐
+ted SAFETY delays, and the optional RESTART feedback on a SAFE output.
+4) EMERGENCY STOP: This tab is used to configure the use of EMERGENCY STOP input, as well as
+an optional safe output for EMERGENCY STOP feedback.
+9 - SAFETY CONFIGURATION (CS9 only)
+SRS © Stäubli 2019 – D.280.959.04-B 57/76
+
+===== PAGE 58 =====
+5) RESTRICTED WORKSPACES: This tab includes subtabs used to configure SAFE restrictions to the
+robot workspace, and the related verification points and tests:
+■ REFERENCE POSITION subtab: Configuration of the SAFE REFERENCING, and the joint values
+of the two reference positions to be used for this SAFE feature. These reference positions can
+be taught from the 3D VIEW, via the GEOMETRY tree view 
+ , right-click on a reference posi‐
+tion 
+  and select TEACH SAFE POSITION.
+■ CARTESIAN subtab:
+■ Configuration of the permanent and activable (via SAFE inputs) CARTESIAN SAFE ZONES.
+The positioning and dimensioning of the volumes composing a SAFE ZONE (activated via
+the corresponding pulldown button 
+ ) can be done either via the editable dimen‐
+sion fields in the wizard, or via the 3D VIEW by dragging the frame icon 
+  (position) or
+the zone control points 
+  (dimensions). These volumes can also be activated, displayed,
+and set to edit mode from the GEOMETRY tree view 
+ , by expanding the SAFETY node 
+ ,
+the SAFE ZONE node 
+ , right-clicking on a volume 
+ , and selecting the corresponding
+option (SET to a volume, SHOW 
+ , EDIT 
+ , or CONFIG 
+  to navigate to
+the SAFETY CONFIGURATION WIZARD).
+■ Configuration of the no speed control zone (inside or outside the zone).
+■ Activation of the zone also in manual mode.
+■ JOINT subtab: Configuration of joint SAFE position limits and SAFE maximum decelerations.
+■ TCP AND POINTS: Configuration of end effector and arm (elbow) safe control points (5 for the
+end effector, one for the arm).
+■ Configuration of the SAFE control points can be done either via the editable dimension
+fields in the wizard, or via the 3D VIEW by dragging the frame icon 
+  of the corre‐
+sponding control points 
+ . These points can also be activated, displayed, and set to edit
+mode from the GEOMETRY tree view 
+ , by expanding the SAFETY node 
+ ,
+the SET OF POINTS (end effector control points) or ROBOT GUARD (arm control point)
+node 
+ , right-clicking on a point 
+ , and selecting the corresponding option
+(SHOW 
+ , EDIT 
+ , or CONFIG 
+  to navigate to the SAFETY CONFIGURATION WIZARD).
+■ BRAKE TESTS subtab: Parameters of the SAFE BRAKE TEST designed to verify the mechani‐
+cal brakes embedded in the robot arm.
+6) SPEED LIMIT: Set the JOINT and CARTESIAN speed limits. Some are permanent, some are asso‐
+ciated to CARTESIAN SAFE ZONES, and some are associated to SAFE inputs. Some of them (the
+non-permanent ones) also have an associated SAFETY DELAY, which corresponds to the time the
+robot will have to slow down after activation of the corresponding speed limit before a safety fault
+occurs.
+7) PROTECTED STOP: For each safe input, activate/configure the corresponding SAFE STOP mode
+and SAFETY DELAY (which corresponds to the time the robot will have to stop after activation of
+the corresponding input before a safety fault occurs).
+8) OUTPUTS: Configure the information associated with every SAFE OUTPUT.
+9.2 - SAFETY RESOURCES M0004871.1
+This section displays a summary of all the SAFETY functions and limits associated to each  SAFE in‐
+put, and all the SAFE feedbacks associated to each SAFE output. In some cases, links to
+the CONFIGURATION WIZARD are displayed, pointing to the specific step where the corresponding
+configuration is located.
+9 - SAFETY CONFIGURATION (CS9 only)
+58/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 59 =====
+9.3 - ERRORS/WARNINGS M0004872.1
+This section of the SAFETY configuration panel provides error and warning messages about the cur‐
+rent SAFETY configuration, such as, but not limited to:
+■ Potential functional conflicts between selected SAFETY functions.
+■ Potential functional risks associated with certain SAFETY functions.
+■ Potential oversights by the user (a SAFETY function required by the use of another one, that the
+user failed to activate).
+It is very important to pay close attention to the messages displayed in this section.
+Please refer to the safety manual, or contact STÄUBLI for more details on these messages.
+9.4 - EXPORTING THE CONFIGURATION M0004873.1
+Once the SAFETY CONFIGURATION is finalized, it must be exported. To do so, two possibilities:
+■ First possibility:
+- Expand the controller 
+  and robot 
+  nodes in the GEOMETRY Tree view 
+ .
+- Right-click on the SAFETY node 
+  and select EXPORT SAFETY CONFIGURATION 
+ .
+■ Second possibility:
+- Click the SAFETY tab in the main ribbon.
+- Click the EXPORT SAFETY CONFIGURATION pulldown button 
+  (far left).
+- Select the controller in the pulldown list.
+In both cases, the SAFETY PARAMETERS window opens up. This window mimics the looks and er‐
+gonomy of the SAFEPMT configuration software.
+The next step is to start the SAFEPMT configuration software alongside  SRS, load the stand‐
+ard SAFETY version and configuration, and copy and paste each parameter from
+the SAFETY PARAMETERS window to SAFEPMT.
+To make this task easier, the SAFETY PARAMETERS window displays in bold all the parameters for
+which the value is different from the standard configuration of the selected SAFETY version.
+It is also possible to copy all the parameters into a text file (for easier comparison between two config‐
+urations).
+For more details on the SAFEPMT software, please refer to the safety manual.
+9 - SAFETY CONFIGURATION (CS9 only)
+SRS © Stäubli 2019 – D.280.959.04-B 59/76
+
+===== PAGE 60 =====
+60/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 61 =====
+10 - REMOTE CONNECTION AND MAINTENANCE
+TOOLS M0004874.1
+SRS integrates multiple features allowing the remote access, configuration, partial control, and diag‐
+nostics of a real robot over Ethernet TCP/IP (either in direct P2P connection or over a network).
+The first step to use these features, is to configure the connection parameters to the robot(s).
+10.1 - CONFIGURATION OF CONNECTION PARAMETERS M0004875.1
+SRS offers a configuration window called TARGETS, dedicated for the definition and setup of connec‐
+tion parameters for multiple targets (real robots).
+This window can be accessed via the properties of a controller (right-click a controller in
+the CELL EXPLORER , DATA, or GEOMETRY panels, then select  PROPERTIES 
+  in the contextual
+menu). In the PROPERTIES panel, edit the HOSTNAME in the REMOTE PROPERTIES section by click‐
+ing on the 
+  button at the right end of the line.
+Once opened, the TARGETS window present a list of already defined targets on the left-hand side,
+from which you can add, delete, or edit the name of a target by selecting it and clicking the corre‐
+sponding button at the bottom of the list 
+ .
+The connection parameters of the selected target are presented on the right-hand side sections of
+the TARGETS window:
+■ Host:  address or hostname of the real controller.
+■ Comment: Free comment field.
+■ Controller Version: SRC version of the real controller (retrieved upon automatic connection, as
+soon as the Host parameter has been set).
+■ Tabs that can be (depending on whether the host is a CS8 or a CS9):
+- Remote connection: TRANSFER MANAGER connection parameters (CS8 and CS9).
+- Remote Access: CS8 REMOTE ACCESS connection parameters.
+- VNC: CS9 REMOTE ACCESS connection parameters.
+- Web: CS9 WEB SESSION connection parameters.
+■ In each tab, the following parameters can be specified:
+- User name: The user name of a valid profile for the selected host (see 10.2  chapter).
+- Password: The connection password of the specified user name.
+- Port: Default port number for the corresponding tool (use  
+  button to restore default number if
+necessary).
+10.2 - PROFILE EDITOR M0004876.1
+The controller provides the possibility of having several users with different rights.
+To use the system, it is necessary to create user profiles and enter the desired rights for each profile.
+For full documentation on profile rights, refer to the "software configuration" chapter of the controller
+user manual.
+10 - Remote connection and maintenance tools
+SRS © Stäubli 2019 – D.280.959.04-B 61/76
+
+===== PAGE 62 =====
+There are two versions of the PROFILE EDITOR 
+ , local and remote:
+■ The local PROFILE EDITOR is aimed at managing profiles to be used within the SRC EMULATOR,
+these profiles can then transferred to the real robot(s) by using the TRANSFER MANAGER (See
+chapter 10.3  for more details).
+- The local PROFILE EDITOR can be started by selecting a controller first, then using the corre‐
+sponding command either in the HOME\CONTROLLER ribbon, or in the contextual menu (right-
+click on the controller in the CELL EXPLORER, DATA, or GEOMETRY panels).
+■ The remote PROFILE EDITOR allows to manage directly profiles on a real robot. This version will
+start by connecting to the real controller via the connection parameters of the virtual one it was
+started onto.
+- The remote PROFILE EDITOR can be started by selecting a controller first, then using the cor‐
+responding command in the contextual menu (right-click on the controller in
+the CELL EXPLORER, DATA, or GEOMETRY panels).
+Once started, this tool can be used to create, modify or delete profiles for a controller.
+The left-hand panel is used to list the profiles, and the current profile access rights are displayed in the
+right-hand panel.
+To modify the values for a profile, double-click on the desired value.
+The PROFILE menu is used to:
+■ Create a new profile (NEW) (CTRL+N),
+■ Delete the selected profile (DELETE),
+■ Make a copy of the selected profile (COPY) (CTRL+C),
+■ Import a profile from the current SRS cell (IMPORT) (CTRL+I),
+■ Export a profile (EXPORT) (CTRL+E).
+To rename a profile, change the name in the editing box at the top of the right-hand panel and then
+validate the name by pressing the tab key. Then accept the change of name by saving the profile.
+10.3 - TRANSFER MANAGER M0004868.1
+SRS can be used to transfer VAL 3 applications and various configuration files from and to a real robot
+controller. This is done using the TRANSFER MANAGER.
+The TRANSFER MANAGER enables configurations and applications to be copied to a controller and
+vice versa.
+The TRANSFER MANAGER 
+  can be executed on a controller via the command located in
+the HOME\CONTROLLER ribbon. The controller needs to be first selected in
+the CELL EXPLORER , DATA, or GEOMETRY panels. It can also be started by right-clicking on the
+controller, and selecting TRANSFER MANAGER 
+ .
+The TRANSFER MANAGER can also be used for a direct transfer of an opened VAL 3 application. To
+do this, select the application in the CELL EXPLORER , DATA, or GEOMETRY panels, and click on
+the UPLOAD APPLICATION command 
+  either in the VAL3\TRANSFER ribbon, or in the contextual
+menu (right-click on the application). This will open the  TRANSFER MANAGER on the controller the
+application belongs to, and start the transfer automatically. The VAL3\TRANSFER ribbon also offers
+the possibility to transfer all opened VAL 3 applications (UPLOAD ALL APPLICATIONS 
+ ).
+A network connection to the controller is required (see chapter 10.1 ). TRANSFER MANAGER will use
+the connection parameters of the selected controller to connect.
+10 - Remote connection and maintenance tools
+62/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 63 =====
+Once it has been connected, the tool displays the emulator contents in the left-hand panel 
+ , and
+the real controller contents in the right-hand panel 
+ .
+Once it has been connected, the tool displays the emulator cell in the left-hand panel, and the control‐
+ler cell in the right-hand panel.
+To select items (VAL 3, I/Os, applications, profiles, etc...), check the corresponding boxes.
+The arrows on each side of the TRANSFER button show the direction in which the transfer is to be
+made. Transfers can only be done in one direction at a time, the arrows on the TRANSFER button
+change direction depending on the side of the selected items. Press the TRANSFER button to start the
+transfer.
+The REFRESH button is used to refresh the corresponding display. The  DELETE button is used to de‐
+lete the selected elements.
+10.3.1 - BACKUP M0003975.1
+It is possible to make a full backup copy of the controller by clicking on the BACKUP button.
+The name of the backup folder is composed of the directory chosen by the user (by de‐
+fault : MY DOCUMENTS\STAUBLI BACKUPS), into which is created a subfolder named after the serial
+number of the controller (this subfolder will contain all the backups made on this specific robot), into
+which in created a subfolder named after the date and time of the backup that contains the actual
+files.
+The SYS partition is saved in the SYS directory, the  USR partition in the  USR directory and
+the LOG partition in the LOG directory.
+The USR\CONFIGS\ARM.CFX file is renamed arm.<serial number of arm>.cfx in the backup.
+■ If the order number of controller is not filled in the option.cfx file, it is replaced by the IP
+address of the controller.
+■ If the order number of arm is not filled in the arm.cfx file, it is replaced by the IP address
+of the controller.
+10.3.2 - COMMAND LINE M0004036.1
+The transfer tool can be started using a command line instruction to carry out automatic transfers. All
+the available commands are also summarized in the help menu button:
+TransferManager options where options are (Carefull, options are case sensitive):
+■ Hhost
+■ Uftp user login
+■ Wftp password
+■ TSoap port
+■ CRoot path on the local controller
+10 - Remote connection and maintenance tools
+SRS © Stäubli 2019 – D.280.959.04-B 63/76
+
+===== PAGE 64 =====
+■ I[mbBsofcCeiyh*]
+- m = mio
+- b = bio
+- B = bio2
+- s = sio
+- o = modbus
+- f = fieldbus
+- c = can
+- C = cio
+- e = encoder
+- i = iomap
+- y = CoDeSys
+- h = Hilscher
+- * = all
+■ A Select Arm config file (Only for download)
+■ L Select logger (Only for download)
+■ p[*plc application name]
+■ e[*profile name]
+■ a[DiskTemplates]://[val 3 application or template name][*]
+Only the nodes Disk:// and Templates:// are managed by TRANSFER MANAGER.
+See examples below.
+■ * Select all
+■ q Quiet mode
+■ B[pDdCc] Backup options
+- p = Backup folder
+- C = Add the controller name in the folder (by default)
+- c = Do not add the controller name in the folder
+- D = Add date in folder (by default)
+- d =Do not add date in the folder
+■ F[cbdu]
+- c = Connect
+- b = Backup
+- d = Download
+- u = Upload
+10 - Remote connection and maintenance tools
+64/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 65 =====
+Example:
+Download applications foo and foo2 and all I/Os in c:\backup\sample1 folder:
+TransferManager -H127.1.1.2 -Uuser -Wpassword -Pc:\backup\sample1 -afoo -afoo2 -I* -Fd
+Download only application named foo:
+TransferManager -H127.1.1.2 -Uuser -Wpassword -aDisk://foo -Fd
+Download application named foo and all subapplications of the folder foo:
+TransferManager -H127.1.1.2 -Uuser -Wpassword -aDisk://foo* -Fd
+Download template Default:
+TransferManager -H127.1.1.2 -Uuser -Wpassword -aTemplates://Default -Fd
+Download all templates:
+TransferManager -H127.1.1.2 -Uuser -Wpassword -aTemplates://* -Fd
+Backup controller in folder c:\backups\<Controller_name>\<Date>:
+TransferManager -H127.1.1.2 -Uuser -Wpassword -Bpc:\backups -Fb
+Backup controller in folder c:\backups\toto without any questions:
+TransferManager -H127.1.1.2 -Uuser -Wpassword -Bpc:\backups\toto -Bd -Bc -q -Fb
+The online command, used with WINDOWS task manager, can be used to make regular
+scheduled backups of controller data (See: Scheduled tasks in the WINDOWS help menu).
+10.4 - REMOTE ACCESS M0004877.1
+This tool is used to log on to a controller using the graphical interface from the emulator.
+To connect to a controller, the REMOTE ACCESS tool uses the connection parameters of the virtual
+controller it was started from (See chapter 10.1  for more details).
+To log on, start the tool by right-clicking on a controller in the CELL EXPLORER , DATA,
+or GEOMETRY panels, and select the REMOTE ACCESS 
+  menu command. It can also be started
+from the HOME\CONTROLLERS ribbon by clicking the corresponding button, after selecting a control‐
+ler in the CELL EXPLORER, DATA, or GEOMETRY panels.
+Once connected, the simulated manual control pendant displays exactly the same interface as the real
+pendant. The two pendants remain connected in parallel, and all the actions carried out on one are
+reflected in the other. The actions prohibited on the simulated pendant are as follows:
+■ Switching arm power on.
+■ Changing the working mode.
+■ Starting a VAL 3 application using the START button.
+■ Stopping a VAL 3 application using the STOP button.
+■ Changing the movement mode.
+■ Using the MOVE/HOLD button.
+■ Using the manual movement keys.
+■ Changing the monitor speed.
+■ Using buttons 1, 2 and 3.
+On CS8 controllers, only one version of the REMOTE ACCESS tool is available. This version provides a
+live connection to the robot teaching pendant, allowing for each party to see the other’s actions.
+On CS9 controllers, it is also possible to connect via the CS9 WEB SESSION tool. In this case, the two
+parties each have a distinct, not synchronized, user interface.
+To exit REMOTE ACCESS, close the simulated manual control pendant.
+This option only functions on controllers with SRC s5.0 or later.
+10 - Remote connection and maintenance tools
+SRS © Stäubli 2019 – D.280.959.04-B 65/76
+
+===== PAGE 66 =====
+The use of these tools requires at least one of two licenses:
+■ An SRS MAINTENANCE STUDIO license (USB dongle) allows to use the REMOTE ACCESS on any
+controller (Versions greater than or equal to s5.0). To use this license, see: Licenses and dongle
+management.
+■ A VAL 3 runtime license installed on the controller allows to use REMOTE ACCESS without a USB
+dongle (See: Adding an option to a controller).
+10.5 - REMOTE OPTIONS M0004878.1
+To start the REMOTE OPTIONS right-click on a controller and select the  REMOTE OPTIONS 
+  menu
+command. It can also be started from the HOME\CONTROLLERS ribbon by clicking the correspond‐
+ing button, after selecting a controller in the CELL EXPLORER, DATA, or GEOMETRY panels.
+Once started, the REMOTE OPTIONS tool connects to the selected controller via the connection pa‐
+rameters defined in the local controller (see chapter 10.1  for more details), and an OPTIONS panel
+opens up.
+If applicable, start by selecting an option pack in the SELECT A PACK pulldown list. This list might or
+might not be present in the panel, depending on the generation and SRC version of the controller (1) .
+To activate a specific option, look for it in the list, and either:
+■ Activate it in demo mode by checking the corresponding box in the DEMO MODE column.
+■ Install the license key by entering in the  LICENSE column, pressing Enter, and accepting the terms
+and conditions.
+■ Save by clicking the SAVE or SAVE ALL button 
+  in SRS main title bar.
+■ Restart the controller.
+The list of available options may vary, depending on the generation
+and SRC version of the controller (1) .
+10.6 - LOGGER VIEWER (CS9 ONLY) M0004879.1
+From the CS9 MAINTENANCE tab in the ribbon, three options:
+■ Click the OPEN LOG button 
+  to open a log archive previously retrieved from a real CS9.
+■ Click the top half of the OPEN REMOTE LOG button 
+  to open the TARGETS window and se‐
+lect/create a target from which the log file will be loaded (See chapter 10.1  for more details).
+■ Click the bottom half of the OPEN REMOTE LOG button 
+  then select a controller from the list
+(only emulated CS9 controllers will be selectable) to open the log directly from the real  CS9. In this
+case, SRS will use the connection parameters from the selected controller (See chapter 10.1  for
+more details).
+The log file will then be loaded, and the LOG FILE VIEWER panel will open.
+The log messages are shown in a list in this panel, divided in sections, with a color code:
+■ Each section corresponds to a boot of the real  CS9. These sections can be expanded or collapsed
+individually by clicking the corresponding button 
+  or 
+  on the left had side of the list. A right click
+in the message list also gives access to the Copy, Expand all, and Collapse All functions.
+■ The colors correspond to the level of the message: Light blue for Info, yellow for warnings, light red
+for errors, and dark red for critical messages.
+The title fields of the list are either sortable only (Time, Timestamp, Text), or both sortable and filtera‐
+ble.
+(1) Consult STÄUBLI for more details.
+10 - Remote connection and maintenance tools
+66/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 67 =====
+When hovering the mouse over a filterable field, a small filter icon 
+  will appear near the field name.
+Simply click on it to setup the corresponding filter.
+It is also possible to create an advanced filter by using the FILTER EDITOR by clicking on
+the EDIT FILTER 
+  at the bottom right of the LOG FILE VIEWER panel ( FILTER panel). From
+this FILTER EDITOR, combinations of tests (based on multiple value comparison operators) can be
+created by using logic operators.
+When a field is only sortable, a simple click on it will toggle the filtering order.
+A search field at the top of the panel can also be used to perform a free word search in the list. This
+search engine can be combined with the current filters (if any) by checking the Search and filter check‐
+box.
+From within the event list, it is possible to perform a multiple selection with the SHIFT or CTRL key,
+and to copy and paste the current selection in a text format.
+From the CS9 MAINTENANCE ribbon, it is also possible to:
+■ Save the log under another path/name (SAVE LOG AS 
+ ).
+■ Download the full log into a local folder (DOWNLOAD LOG 
+ ).
+■ Show/hide some of the features of the LOG FILE VIEWER panel (SETTINGS 
+ ).
+■ Change the language of the log (LANGUAGES 
+ ).
+10.7 - USB DISK TOOLS (CS9 ONLY) M0004880.1
+This feature gives access to maintenance software tools so that they can be executed remotely on a
+real CS9. First, the DISK TOOLS feature needs to be started by clicking the corresponding but‐
+ton 
+  in the CS9 MAINTENANCE tab in the main ribbon. This opens up the DISK TOOLS panel. This
+panel includes a step by step procedure.
+First, the CS9 needs to be booted up on a specific boot device hosted on a USB stick. This stick is
+created from an image, with the USBIT software. For more details on this process, please con‐
+tact STÄUBLI service.
+The next step is to connect to the CS9 over Ethernet TCP/IP, either on the  J204 or the J205 Ethernet
+ports. J204 is set to DHCP by the boot device, its IP address is indicated on the small LCD display on
+the CS9’s logic drawer (the middle one) front panel. J205 is set to the default  IP address.
+See CS9 Instructions manual for more details on these Ethernet ports and their settings.
+Connect the PC running SRS to one of these two ports (direct connection or over a network), select
+the port the PC is connected to in the DISK TOOLS panel:
+■ If you select J204, you need to enter the IP address displayed on the LCD panel on the CS9 con‐
+troller.
+■ If you select J205, its default address is already entered in the field, and cannot be modified.
+Click on the get tool list button 
+  to retrieve the list of maintenance tools from the  CS9. The version
+of the maintenance package will be displayed in the center of the DISK TOOLS panel, and the list of
+maintenance tools is right below it.
+Select a maintenance tool from the pulldown list, and click on the Start button 
+  next to it. If the tool
+is not an official STÄUBLI maintenance tool, or if the version of the maintenance package is earlier
+than your version of SRS, a warning will be displayed.
+The execution log of the started maintenance tool will be displayed in the output section, in the bottom
+half of the DISK TOOLS panel. This log can be copied  
+  or cleared 
+  by clicking the corresponding
+button at the bottom right of the DISK TOOLS panel.
+10 - Remote connection and maintenance tools
+SRS © Stäubli 2019 – D.280.959.04-B 67/76
+
+===== PAGE 68 =====
+When the maintenance operations are finished, remove the USB stick from the CS9, and restart it.
+10 - Remote connection and maintenance tools
+68/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 69 =====
+11 - SRC EMULATORS M0004881.1
+This tool can be used to emulate a controller.
+The EMULATOR acts as a controller and provides the same interface via a simulation of the manual
+control pendant.
+It can be used to:
+■ Load, execute, or debug a VAL 3 application.
+■ Display and toggle the I/Os.
+■ Display events.
+■ Simulate arm movements.
+Emulator with a version earlier than s7.6 must be launched manually.
+Emulators with a version greater than or equal to  s7.6 are launched automatically by SRS when open‐
+ing a cell.
+It is very important that the virtual robots in your SRS cell have SRC versions identical to the ones
+equipping the controllers of their real counterparts.
+11.1 - INSTALLING A NEW VERSION OF SRC  EMULATOR M0003977.1
+Several SRC emulators (one per major SRC version) are supplied on each  SRS installation DVD. Al‐
+though they can be unchecked in the installation wizard, they will by default be installed by
+the SRS installer.
+SRC emulators can also be found on the SRC installation CD provided with each STÄUBLI robots (in
+the Emulator directory).
+All the published versions of SRC emulators are also available from a download/install center  (1) , ac‐
+cessible through the EMULATOR UPDATES (1)  page.
+This page is accessible from SRS main page (File tab in the rib‐
+bon, HELP\SHOW EMULATOR UPDATES command in the third column, right-hand side of the page),
+and from HOME\GENERAL\SHOW EMULATOR UPDATES in the ribbon.
+This page contains one main section for each generation of controller (CS8/CS8C, CS9), each contain‐
+ing a subsection per major SRC version. Navigate these subsections to find the exact version you
+need, then:
+■ Click DOWNLOAD 
+ , the download progress will be shown via a progress bar.
+■ Click INSTALL 
+  and follow the on-screen instructions.
+■ You may also click EXPLORE 
+  to open a WINDOWS explorer in the download folder.
+This page is also accessible after opening a cell containing robot(s) for which the  SRC emulator ver‐
+sion is not yet installed. In this case, the controller name in the CELL EXPLORER panel 
+  will be fol‐
+lowed by a warning message:
+ 
+I0004457
+ 
+Simply right-click on the corresponding controller, and se‐
+lect DOWNLOAD AND INSTALL EMULATOR 
+ , this will open the  EMULATOR UPDATES  (1)  page,
+and start the download process. Once downloaded, the setup will start automatically, simply follow
+the on-screen instructions from this point forward.
+(1) This feature requires an Internet connection.
+11 - SRC EMULATORS
+SRS © Stäubli 2019 – D.280.959.04-B 69/76
+
+===== PAGE 70 =====
+11.2 - UNINSTALLING A VERSION OF SRC  EMULATOR M0003978.1
+From the EMULATOR UPDATES page, navigate to the version of  SRC emulator you wish to uninstall,
+and click UNINSTALL 
+ .
+11 - SRC EMULATORS
+70/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 71 =====
+12 - LICENSES AND DONGLE MANAGEMENT M0004882.1
+The SRC licenses are protected with a USB dongle.
+The licenses are installed on the dongle and the connecting this dongle to a computer enables the li‐
+censes on it.
+12.1 - DONGLES M0003979.1
+There are 2 types of dongle:
+■ Local dongle: This dongle is used for a single PC. When it is plugged into the USB port, all the
+licenses that are installed on this dongle are enabled for this PC.
+I0004459
+Figure 12.1
+■ Network-50 dongle: This dongle grants floating licenses on a network. This dongle is limited to a
+maximum of 50 users.
+I0004460
+Figure 12.2
+12.2 - THE LICENSE MANAGER M0003980.1
+This tool scans all the dongles that are visible from the PC: The local plugged dongles and the acces‐
+sible network dongles. It displays the identifier of each dongle and their firmware version.
+For each licence, following information are displayed:
+■ Name of the licence.
+■ Identifier of the licence (unique number).
+■ Firmware version of the license: 2.16 means that this license is usable by SRS 6.x and further.
+From the 3.21 version, the license is usable by SRS 7.x and further.
+■ Type of the License: Local or Network.
+■ Maximum executions of the license: This is the maximum number of uses of the license. Once this
+number is reached, the license is invalid. The value "perpetual" means there is no limit.
+■ Already done executions: This is the number of times the license has been used. Set to "-" if the
+license is perpetual.
+■ Concurrency user's limit: Only for network licenses. This is the number of users that can simultane‐
+ously use the license.
+12 - Licenses and dongle management
+SRS © Stäubli 2019 – D.280.959.04-B 71/76
+
+===== PAGE 72 =====
+12.2.1 - UPDATE FIRMWARE M0003981.1
+If the firmware version is prior to 3.21, it is necessary to update it. To do so, unplug all the other don‐
+gles, select the UPDATE\UPDATE FIRMWARE menu and follow the prompts.
+12.2.2 - ADD A LICENSE ON A DONGLE M0003982.1
+To update a dongle with a new license, follow these steps:
+1) Connect the dongle into the USB port of a PC equipped with SRS.
+2) Run the SRS license manager (from menu TOOLS\SRS LICENSES MANAGER).
+3) In the SRS license manager, use
+the UPDATE\GENERATE THE DONGLE IDENTIFICATION FILE menu to create the C2V file
+(C2V = customer to vendor).
+4) Contact STÄUBLI and order the desired license.
+5) Email the C2V file to STÄUBLI.
+6) You will receive a V2C file from STÄUBLI by email (V2C = vendor to customer).
+7) Connect the dongle into the USB port of a PC with SRS.
+8) Run the SRS license manager (from menu TOOLS\SRS LICENSES MANAGER).
+9) Update the dongle using the UPDATE\UPDATE LICENSES command.
+Once you have generated a C2V file, you must apply the related V2C file before being able to
+generate a new C2V file.
+12.3 - AVAILABLE LICENSES .
+12.3.1 - DEVELOPMENT STUDIO M0003984.1
+Available features:
+■ Save VAL 3 applications in the editor.
+■ On-line debugger.
+■ 3D modeling: CAD files import, save.
+■ Collision detection.
+■ CHECK PAYLOAD.
+■ JOG panel.
+■ USERPAGE DESIGNER (CS9 only).
+■ Points accessibility.
+■ IOMAP Editor.
+■ SAFETY CONFIGURATION WIZARD (CS9 only).
+■ I/Os Configuration with Sycon.NET (CS9 only).
+■ TCP/IP and UDP sockets creation.
+■ RECORD PLAYER.
+12.3.2 - MAINTENANCE STUDIO M0004883.1
+Available features:
+■ REMOTE ACCESS to a controller.
+■ Loading of the 3D cell.
+■ Logger viewer (CS9 only).
+■ USB DISK TOOLS (CS9 only).
+Please note that it is not possible to save the cell (VAL 3 applications and 3D) with this license.
+12 - Licenses and dongle management
+72/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 73 =====
+12.4 - SHARING/DISABLING A LICENSE M0003985.1
+When a dongle is detected, SRS always uses the license with the most options for the corresponding
+features.
+For example, when opening the 3D viewer with a dongle containing the DEVELOPMENT STUDIO and
+the MAINTENANCE STUDIO licenses, SRS will use the DEVELOPMENT STUDIO license.
+Users who are sharing licenses on a network dongle may want to prevent their session of  SRS from
+using a specific option.
+To do so, open the SRS SETTINGS, select the ENVIRONMENT\LICENSES section and uncheck the
+licenses that you do not want your current session of SRS to use.
+Please note that it is necessary to restart SRS in order to take those modifications into account.
+12 - Licenses and dongle management
+SRS © Stäubli 2019 – D.280.959.04-B 73/76
+
+===== PAGE 74 =====
+74/76 © Stäubli 2019 – D.280.959.04-B SRS
+
+===== PAGE 75 =====
+13 - QUESTIONS AND ANSWERS M0004884.1
+Can I install more than one major version of SRS on my PC
+Yes, the major versions of SRS are installed in different default directories.
+The Online debugger does not connect.
+Make sure that:
+■ The controller version is at least s7.0.
+■ Ports 5653 and 5656 are opened on your firewall.
+■ You can ping the IP address of the controller from your computer.
+■ The profile's user name and password are correct.
+The REMOTE ACCESS tool does not connect.
+Make sure that:
+■ The controller version is at least s5.0.
+■ The port number entered in the tool connection information corresponds to that of the controller.
+■ Your controller is connected to the network.
+■ You can ping the IP address of the controller from your computer.
+■ The profile's user name and password are correct.
+■ There is no firewall software preventing the connection.
+The TRANSFER MANAGER does not connect.
+Make sure that:
+■ Your controller is connected to the network.
+■ You can ping the IP address of the controller from your computer.
+■ The profile's user name and password are correct.
+■ There is no firewall software preventing the connection.
+13 - Questions and Answers
+SRS © Stäubli 2019 – D.280.959.04-B 75/76
+
+===== PAGE 76 =====
+76/76 © Stäubli 2019 – D.280.959.04-B SRS
